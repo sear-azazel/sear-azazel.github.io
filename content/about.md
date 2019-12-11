@@ -24,6 +24,7 @@ aliases = ["about-us","contact"]
 ## スマートフォンアプリ開発
 - XR(AR/VR)アプリ
     - Unity (ゲームエンジン)
+        - アプリがAbema TV で紹介
 - Beacon アプリ(Android)
 
 ### 業務系
