@@ -10,7 +10,7 @@ title: "「宮崎に住むエンジニアさんに20の質問」に回答して�
 draft: false
 tags: ["自己紹介", "宮崎", "20の質問", "エンジニア"]
 categories: ["その他"]
-description: "「宮崎に住むエンジニアさんに20の質問」に回答してみた"
+description: "アウトプットの癖をつけるため、また自分の振り返りを込めて「「宮崎に住むエンジニアさんに20の質問」に回答してみた」を記事にしました。"
 ---
 
 [宮崎IT勉強会](https://www.facebook.com/groups/miyazakis/) のメンバー内で流行った(？)、Github Pages をやってみました。
