@@ -1,20 +1,48 @@
 +++
 title = "About"
-date = "2014-04-09"
-aliases = ["about-us","about-hugo","contact"]
+date = "2019-12-11"
+aliases = ["about-us","contact"]
 [ author ]
-  name = "Hugo Authors"
+  name = "az"
 +++
 
-Hugo is the **world’s fastest framework for building websites**. It is written in Go.
+# About
 
-It makes use of a variety of open source projects including:
+## 自己紹介
+- 地方SIer 勤務 10年
+    - 主に業務系アプリの開発を行う
+    - (比較的)新しめな技術を扱う
+        - AI, OCR
+        - Beacon/Bluetooth
+        - AR
+        - ペッパー
 
-* https://github.com/russross/blackfriday
-* https://github.com/alecthomas/chroma
-* https://github.com/muesli/smartcrop
-* https://github.com/spf13/cobra
-* https://github.com/spf13/viper
 
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+## できること
+### CI, CD 構築
+- Jenkins
+- Docker
+
+### スマートフォンアプリ開発
+- XR(AR/VR)アプリ
+    - Unity (ゲームエンジン)
+- Beacon アプリ(Android)
+
+#### 業務系
+- .NET
+    - C#
+    - WPF
+
+#### WEB系
+- PHP
+- JavaScript
+    - jQuery
+- Python
+    - Django
+
+#### AI系
+- C++
+    - ディープラーニング
+- Python
+    - OCRなど
 
