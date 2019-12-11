@@ -14,7 +14,7 @@ aliases = ["about-us","contact"]
         - Beacon/Bluetooth
         - AR
         - ペッパー
-
+- 認定 Outcome Delivery Partitioner です
 
 # できること
 ## CI, CD 構築
