@@ -14,8 +14,7 @@
       <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://sear-azazel.github.io/about/</guid>
-      <description>&lt;h1 id=&#34;about&#34;&gt;About&lt;/h1&gt;
-&lt;h2 id=&#34;heading&#34;&gt;自己紹介&lt;/h2&gt;
+      <description>&lt;h1 id=&#34;heading&#34;&gt;自己紹介&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;地方SIer 勤務 10年
 &lt;ul&gt;
@@ -31,13 +30,13 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;heading1&#34;&gt;できること&lt;/h2&gt;
-&lt;h3 id=&#34;ci-cd-&#34;&gt;CI, CD 構築&lt;/h3&gt;
+&lt;h1 id=&#34;heading1&#34;&gt;できること&lt;/h1&gt;
+&lt;h2 id=&#34;ci-cd-&#34;&gt;CI, CD 構築&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Jenkins&lt;/li&gt;
 &lt;li&gt;Docker&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;heading2&#34;&gt;スマートフォンアプリ開発&lt;/h3&gt;
+&lt;h2 id=&#34;heading2&#34;&gt;スマートフォンアプリ開発&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;XR(AR/VR)アプリ
 &lt;ul&gt;
@@ -46,7 +45,7 @@
 &lt;/li&gt;
 &lt;li&gt;Beacon アプリ(Android)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;heading3&#34;&gt;業務系&lt;/h4&gt;
+&lt;h3 id=&#34;heading3&#34;&gt;業務系&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;.NET
 &lt;ul&gt;
@@ -55,7 +54,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;web&#34;&gt;WEB系&lt;/h4&gt;
+&lt;h3 id=&#34;web&#34;&gt;WEB系&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;PHP&lt;/li&gt;
 &lt;li&gt;JavaScript
@@ -69,7 +68,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;ai&#34;&gt;AI系&lt;/h4&gt;
+&lt;h3 id=&#34;ai&#34;&gt;AI系&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;C++
 &lt;ul&gt;
