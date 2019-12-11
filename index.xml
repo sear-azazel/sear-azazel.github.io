@@ -1,47 +1,96 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sear Azazel on Sear Azazel</title>
+    <title>az on az</title>
     <link>https://sear-azazel.github.io/</link>
-    <description>Recent content in Sear Azazel on Sear Azazel</description>
+    <description>Recent content in az on az</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Dec 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://sear-azazel.github.io/" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Posts</title>
-      <link>https://sear-azazel.github.io/posts/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://sear-azazel.github.io/posts/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>About</title>
       <link>https://sear-azazel.github.io/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://sear-azazel.github.io/about/</guid>
-      <description>&lt;p&gt;Hugo is the &lt;strong&gt;world’s fastest framework for building websites&lt;/strong&gt;. It is written in Go.&lt;/p&gt;
-&lt;p&gt;It makes use of a variety of open source projects including:&lt;/p&gt;
+      <description>&lt;h1 id=&#34;about&#34;&gt;About&lt;/h1&gt;
+&lt;h2 id=&#34;heading&#34;&gt;自己紹介&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/russross/blackfriday&#34;&gt;https://github.com/russross/blackfriday&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/alecthomas/chroma&#34;&gt;https://github.com/alecthomas/chroma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/muesli/smartcrop&#34;&gt;https://github.com/muesli/smartcrop&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;https://github.com/spf13/cobra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/viper&#34;&gt;https://github.com/spf13/viper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;地方SIer 勤務 10年
+&lt;ul&gt;
+&lt;li&gt;主に業務系アプリの開発を行う&lt;/li&gt;
+&lt;li&gt;(比較的)新しめな技術を扱う
+&lt;ul&gt;
+&lt;li&gt;AI, OCR&lt;/li&gt;
+&lt;li&gt;Beacon/Bluetooth&lt;/li&gt;
+&lt;li&gt;AR&lt;/li&gt;
+&lt;li&gt;ペッパー&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Learn more and contribute on &lt;a href=&#34;https://github.com/gohugoio&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;heading1&#34;&gt;できること&lt;/h2&gt;
+&lt;h3 id=&#34;ci-cd-&#34;&gt;CI, CD 構築&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Jenkins&lt;/li&gt;
+&lt;li&gt;Docker&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;heading2&#34;&gt;スマートフォンアプリ開発&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XR(AR/VR)アプリ
+&lt;ul&gt;
+&lt;li&gt;Unity (ゲームエンジン)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Beacon アプリ(Android)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;heading3&#34;&gt;業務系&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;.NET
+&lt;ul&gt;
+&lt;li&gt;C#&lt;/li&gt;
+&lt;li&gt;WPF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;web&#34;&gt;WEB系&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;PHP&lt;/li&gt;
+&lt;li&gt;JavaScript
+&lt;ul&gt;
+&lt;li&gt;jQuery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python
+&lt;ul&gt;
+&lt;li&gt;Django&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;ai&#34;&gt;AI系&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;C++
+&lt;ul&gt;
+&lt;li&gt;ディープラーニング&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python
+&lt;ul&gt;
+&lt;li&gt;OCRなど&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
     <item>
-      <title>Projects</title>
-      <link>https://sear-azazel.github.io/projects/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      <title>Posts</title>
+      <link>https://sear-azazel.github.io/posts/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://sear-azazel.github.io/projects/</guid>
+      <guid>https://sear-azazel.github.io/posts/</guid>
       <description></description>
     </item>
     
