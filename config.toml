@@ -1,6 +1,6 @@
 baseURL = "https://sear-azazel.github.io/"
-languageCode = "en-us"
-defaultContentLanguage = "en"
+languageCode = "ja-jp"
+defaultContentLanguage = "jp"
 title = "Sear Azazel"
 theme = "KeepIt"
 
