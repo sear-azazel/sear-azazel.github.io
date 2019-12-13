@@ -5,8 +5,17 @@
     <description>Recent content in az on az</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 11 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Dec 2019 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://sear-azazel.github.io/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Posts</title>
+      <link>https://sear-azazel.github.io/posts/</link>
+      <pubDate>Wed, 11 Dec 2019 12:00:00 +0000</pubDate>
+      
+      <guid>https://sear-azazel.github.io/posts/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>About</title>
@@ -15,22 +24,12 @@
       
       <guid>https://sear-azazel.github.io/about/</guid>
       <description>&lt;h1 id=&#34;heading&#34;&gt;自己紹介&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;地方SIer 勤務 10年
-&lt;ul&gt;
-&lt;li&gt;主に業務系アプリの開発を行う&lt;/li&gt;
-&lt;li&gt;(比較的)新しめな技術を扱う
-&lt;ul&gt;
-&lt;li&gt;AI, OCR&lt;/li&gt;
-&lt;li&gt;Beacon/Bluetooth&lt;/li&gt;
-&lt;li&gt;AR&lt;/li&gt;
-&lt;li&gt;ペッパー&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;認定 Outcome Delivery Partitioner です&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;地方ISerに勤める金属10年の業務システムを主に担当するエンジニアです。&lt;/p&gt;
+&lt;p&gt;比較的新しめな技術を扱うことが多いです。&lt;/p&gt;
+&lt;p&gt;AIやOCR(Deep Learningなど)、Beacon/Bluetoothのスマートフォンアプリ、
+ARや、ペッパーアプリの開発にも携わっています。&lt;/p&gt;
+&lt;p&gt;また最近、&lt;strong&gt;Outcome Delivery Partitioner&lt;/strong&gt;の認定を受けました。
+内容について記事にしたいと思います。&lt;/p&gt;
 &lt;h1 id=&#34;heading1&#34;&gt;できること&lt;/h1&gt;
 &lt;h2 id=&#34;ci-cd-&#34;&gt;CI, CD 構築&lt;/h2&gt;
 &lt;ul&gt;
@@ -87,15 +86,6 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Posts</title>
-      <link>https://sear-azazel.github.io/posts/</link>
-      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://sear-azazel.github.io/posts/</guid>
-      <description></description>
     </item>
     
   </channel>
