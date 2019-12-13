@@ -7,14 +7,16 @@ aliases = ["about-us","contact"]
 +++
 
 # 自己紹介
-- 地方SIer 勤務 10年
-    - 主に業務系アプリの開発を行う
-    - (比較的)新しめな技術を扱う
-        - AI, OCR
-        - Beacon/Bluetooth
-        - AR
-        - ペッパー
-- 認定 Outcome Delivery Partitioner です
+
+地方ISerに勤める金属10年の業務システムを主に担当するエンジニアです。
+
+比較的新しめな技術を扱うことが多いです。
+
+AIやOCR(Deep Learningなど)、Beacon/Bluetoothのスマートフォンアプリ、
+ARや、ペッパーアプリの開発にも携わっています。
+
+また最近、**Outcome Delivery Partitioner**の認定を受けました。
+内容について記事にしたいと思います。
 
 # できること
 ## CI, CD 構築
