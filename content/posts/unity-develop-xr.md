@@ -79,60 +79,73 @@ UnityでVRを実装し、iOS or Androidに出力するまでを行います。
 
 1. Unityを立ち上げて、プロジェクトを作成します。
     - テンプレートは３Dを選択してください。
-1. シーンを作成します。
-    - デフォルトで作成されている「SampleScene」をリネームして「Menu」とします。
-    - Projectタブで右クリック→Create→Sceneと選択して、「Game」シーンを作成します。
+1. メニューシーンを作成します。
+    1. デフォルトで作成されている「SampleScene」をリネームして「Menu」とします。
+    1. Projectタブで右クリック→Create→Sceneと選択して、「Game」シーンを作成します。
 1. メニューシーンに「開始」ボタン、ゲームシーンに「終了」ボタンを配置します。
     - Hierarchyタブで右クリック→UI→Buttonと選択します。
+        ```txt
+        * Main Camera
+        * Directional Light
+        * EventSystem
+        * Canvas
+            * Button
+                * Text
+        ```
 1. ボタンにシーン遷移スクリプトを追加します。
-    1. Projectタブで右クリック→Create→C# Scriptと選択し、「Menu」と「Game」のスクリプトを作成します。
+    1. Projectタブで右クリック→Create→C# Scriptと選択し、「Menu」のスクリプトを作成します。
     1. Unityエディタのメニュー→Assets→Open C# Projectと選択し、Visual Studioを起動します。
-    1. Menuクラス、Gameクラスそれぞれ下記のように実装
-        - Menu.cs
-            ```C#
-            using UnityEngine;
-            using UnityEngine.SceneManagement;
+    1. 下記のように実装します。
+        ```C#
+        // Menu.cs
+        using UnityEngine;
+        using UnityEngine.SceneManagement;
 
-            public class Menu : MonoBehaviour {
-                public void PlayGame() {
-                    SceneManager.LoadScene("Game");
-                }
+        public class Menu : MonoBehaviour {
+            public void PlayGame() {
+                SceneManager.LoadScene("Game");
             }
-            ```
-        - Game.cs
-            ```C#
-            using System.Collections;
-            using UnityEngine;
-            using UnityEngine.SceneManagement;
-            using UnityEngine.UI;
+        }
+        ```
+    1. Hierarycyタブで右クリック→GameObjectと選択し、スクリプトをアタッチするためのGameObjectを作成します。
+        - 作成したGameObjectのInspectorのAdd Compornentを選択し、先ほど作成したMenu.csを追加します。
+    1. 
+1. 同様にゲームシーンを作成します。
+    1. 
+        ```C#
+        // Game.cs
+        using System.Collections;
+        using UnityEngine;
+        using UnityEngine.SceneManagement;
+        using UnityEngine.UI;
 
-            public class Game : MonoBehaviour {
-                [SerializeField] private Text countdownText;
-                private Coroutine countdown = null;
+        public class Game : MonoBehaviour {
+            [SerializeField] private Text countdownText;
+            private Coroutine countdown = null;
 
-                public void OnEnter() {
-                    this.countdown = this.StartCoroutine(this.Countdown());
-                }
-
-                public void OnExit() {
-                    this.StopCoroutine(this.countdown);
-                    this.countdownText.text = string.Empty;
-                }
-
-                private IEnumerator Countdown() {
-                    const int sec = 2;
-                    float start = Time.realtimeSinceStartup;
-                    float elapsed = sec;
-                    do
-                    {
-                        this.countdownText.text = $"{(int)(sec - elapsed)}";
-                        elapsed = Time.realtimeSinceStartup - start;
-                        yield return null;
-                    } while (elapsed < sec);
-                    SceneManager.LoadScene("Menu");
-                }
+            public void OnEnter() {
+                this.countdown = this.StartCoroutine(this.Countdown());
             }
-            ```
+
+            public void OnExit() {
+                this.StopCoroutine(this.countdown);
+                this.countdownText.text = string.Empty;
+            }
+
+            private IEnumerator Countdown() {
+                const int sec = 2;
+                float start = Time.realtimeSinceStartup;
+                float elapsed = sec;
+                do
+                {
+                    this.countdownText.text = $"{(int)(sec - elapsed)}";
+                    elapsed = Time.realtimeSinceStartup - start;
+                    yield return null;
+                } while (elapsed < sec);
+                SceneManager.LoadScene("Menu");
+            }
+        }
+        ```
 
 ## プラグインのインポート
 
