@@ -2,11 +2,11 @@
 author:
   name: "az"
 date: 2019-12-17 00:00:00
-linktitle: "UnityでVRアプリを作成しVR/ノーマルを切り替えや視線イベントを実装する"
+linktitle: "UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する"
 type:
 - post
 - posts
-title: "UnityでVRアプリを作成しVR/ノーマルを切り替えや視線イベントを実装する"
+title: "UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する"
 draft: true
 tags: ["Unity", "C#", "開発", "VR"]
 categories: ["Unity"]
@@ -29,7 +29,7 @@ Daydreamの販売終了とニュースもありますが、Googleが完全にVR�
 
 # 目標
 
-UnityでのVR実装し、iOS or Androidに出力するまでを行います。
+UnityでVRを実装し、iOS or Androidに出力するまでを行います。
 
 また、アプリ起動時は1眼(通常モード)の状態で、ゲーム開始時に2眼(VRモード)になるように組み込みたいと思います。
 
@@ -46,7 +46,7 @@ UnityでのVR実装し、iOS or Androidに出力するまでを行います。
         - コーディングで利用する
         - Unityと併せてインストールできる(はず)
         - コードエディタは何でも良いが、利便性を考えるとVisual Studio一択
-        - おすすめはVisual Studio 2019
+        - おすすめはVisual Studio 2019 (Windows)
             - 以前のバージョンに比べて3倍速い
 
 ### Unity Hubのバージョン
@@ -60,10 +60,10 @@ UnityでのVR実装し、iOS or Androidに出力するまでを行います。
 ### Unityのバージョン
 - 2018.4.13f (LTS)
     - Unity Hubからインストール
-    - 直接ダウンロードする場合はこちら
-        - [Unity ダウンロードアーカイブ](https://unity3d.com/jp/get-unity/download/archive)
-        - [長期サポート](https://unity3d.com/jp/unity/qa/lts-releases)
-        - [パッチリリース](https://unity3d.com/jp/unity/qa/patch-releases)
+- その他のバージョン及び、直接ダウンロードする場合はこちら
+    - [Unity ダウンロードアーカイブ](https://unity3d.com/jp/get-unity/download/archive)
+    - [長期サポート](https://unity3d.com/jp/unity/qa/lts-releases)
+    - [パッチリリース](https://unity3d.com/jp/unity/qa/patch-releases)
 
 ### google VRのバージョン
 - v1.200.1
