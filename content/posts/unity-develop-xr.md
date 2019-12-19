@@ -13,11 +13,12 @@ categories: ["Unity"]
 description: "UnityのVR切り替えについて情報が少ないので備忘録の意味も込めて記事にします。"
 ---
 
-UnityやGoogleVRのバージョンが上がるたびに仕様が変わっていくので、
-備忘録を込めて現時点のバージョンの実装方法を記載します。
-
+UnityではVRは簡単に実装できますが、VRとノーマルモードの切り替えがちょっとややこしいです。
 また、VRモードではタッチでの操作が出来ないため、視線イベントが必要となります。
-その実装についても併せて記載したいと思います。
+ボタンを3秒見つめたら、ボタンタッチとするという仕組みです。
+
+それと、UnityやGoogleVRのバージョンが上がるたびに仕様が変わっていくので、
+備忘録の意味も込めて現時点のバージョンの実装方法を記載します。
 
 # 前置き
 
@@ -31,7 +32,7 @@ Daydreamの販売終了とニュースもありますが、Googleが完全にVR�
 
 UnityでVRを実装し、iOS or Androidに出力するまでを行います。
 
-また、アプリ起動時は1眼(通常モード)の状態で、ゲーム開始時に2眼(VRモード)になるように組み込みたいと思います。
+また、アプリ起動時は1眼(ノーマルモード)の状態で、ゲーム開始時に2眼(VRモード)になるように組み込みたいと思います。
 
 # 前提条件
 
@@ -76,7 +77,7 @@ UnityでVRを実装し、iOS or Androidに出力するまでを行います。
 
 # 開発前補足
 
-VRとそうでない状態の言葉を使い分けるために、VRモード、通常モードという言葉を使います。
+VRとそうでない状態の言葉を使い分けるために、VRモード、ノーマルモードという言葉を使います。
 
 # 開発手順
 
@@ -90,7 +91,7 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
 
 ## Unityでプロジェクトを作る
 
-メニューシーンとゲームシーンの2つを用意して、VRモードと通常モードを切り替えるための準備をします。
+メニューシーンとゲームシーンの2つを用意して、VRモードとノーマルモードを切り替えるための準備をします。
 今回は簡単に、メニューシーンに「開始」ボタン、ゲームシーンに「終了」ボタンを設けて実現したいと思います。
 
 ### プロジェクト共通
@@ -112,11 +113,11 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
 ### メニューシーン
 
 1. メニューシーンを作成します。
-    1. デフォルトで作成されている「SampleScene」をリネームして「Menu」とします。
+    - デフォルトで作成されている「SampleScene」をリネームして「Menu」とします。
 1. ゲームシーンへ遷移するための「開始」ボタンを配置します。
     1. Hierarchyタブで右クリック→UI→Buttonと選択してください。
         - Gameタブの真ん中にボタンが配置されます。
-    2. HierarchyタブでTextオブジェクトを選択し、**Text (Script)** コンポーネントでボタンのラベルを**Start**に変更してください。
+    1. HierarchyタブでTextオブジェクトを選択し、**Text (Script)** コンポーネントでボタンのラベルを「開始」に変更してください。
     - (補足)ボタンが小さい or 大きい場合は、Canvasの設定で適宜キャンバスサイズを調整してください。
         1. HierarchyタブのCanvasを選択し、**Canvas Scaler (Script)** コンポーネントの**UI Scale Mode**を**Scale With Screen Size**に変更します。
         1. **Reference Resolution**を X: 1280、Y: 720にすると丁度良いかもしれません。
@@ -157,11 +158,17 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
                     - Text
             - GameObject
         ```
-
 ### ゲームシーン
 
-1. 同様にゲームシーンを作成します。
+1. メニューシーンと同様にゲームシーンを作成します。
     1. Projectタブで右クリック→Create→Sceneと選択して、「Game」シーンを作成します。
+1. メニューシーンへ遷移するための「終了」ボタンを作成します。
+    1. 作り方は「開始」と同じです。
+    1. メニューシーンと異なるのはCanvasの設定です。
+        1. HierarchyタブでCanvasオブジェクトを選択し、Inspectorタブの**Canvas**コンポーネントで**Render Model**を**World Space**に変更してください。
+            - そうすると、ボタンが極端に大きくなるので、CanvasのTransformコンポーネントのScaleを0.05前後にしてください。(X, Y, Z同じ値です。)
+            - (補足)変更前のCanvasの設定では、画面の上に1枚のレイヤーが存在し、そこにボタンなどのUIを配置するイメージです。現実世界(とゲームの世界の境界線)のインターフェースですが、変更後は、ゲームの世界にボタンを配置するイメージです。そうすることによって、VRとしてボタンを表現することができるようになります。なので、**Render Model**が**World Space**以外だと、VRにはなりません。
+    1. 「Game」のスクリプトを下記のように作成します。
         ```C#
         // Game.cs
         using System.Collections;
@@ -173,21 +180,24 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
             [SerializeField] private Text countdownText;
             private Coroutine countdown = null;
 
+            // 視線(カーソル)がボタンに重なったときのイベント
             public void OnEnter() {
                 this.countdown = this.StartCoroutine(this.Countdown());
             }
 
+            // 視線(カーソル)がボタンから離れた時のイベント
             public void OnExit() {
                 this.StopCoroutine(this.countdown);
                 this.countdownText.text = string.Empty;
             }
 
+            // ボタンが重なって離れるまでに走る処理
+            // カウントダウンが終わったら、シーン遷移する
             private IEnumerator Countdown() {
-                const int sec = 2;
+                const int sec = ３;
                 float start = Time.realtimeSinceStartup;
                 float elapsed = sec;
-                do
-                {
+                do {
                     this.countdownText.text = $"{(int)(sec - elapsed)}";
                     elapsed = Time.realtimeSinceStartup - start;
                     yield return null;
@@ -195,6 +205,27 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
                 SceneManager.LoadScene("Menu");
             }
         }
+        ```
+    1. メニューシーンと同様にButtonのイベントにメソッドを紐付けます。
+        1. **Button**に**Event Trigger**コンポーネントを追加してください。
+        1. Add New Event Typeボタンをクリックして、Pointer EnterとPoiner Exitを追加してください。
+        1. メニューシーンの作成で、ButtonのOn Clickにメソッドを紐付けたように、以下２つを紐付けてください。
+            - Pointer Enter: OnEnter
+            - Pointer Exit: OnExit
+    1. VR用のイベントを拾うための設定を行います。
+        - HierarchyタブからEvent Systemを削除して、GoogleVRのGvrEventSystem(Prefab)を追加してください。
+    1. エディタ上で動作確認するためのオブジェクトを配置します。
+        - GvrEditorEmulator(Prefab)を追加してください。
+    1. 最終的にHierarchyタブはこんな感じになります。
+        ```txt
+        [Heirarchy]
+            - Main Camera
+            - Directional Light
+            - Canvas
+                - Button
+                    - Text
+            - GvrEventSystem
+            - GameObject
         ```
 
 ## ビルド設定およびXRの有効化
