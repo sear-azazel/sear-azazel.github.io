@@ -13,12 +13,18 @@ categories: ["Unity"]
 description: "UnityのVR切り替えについて情報が少ないので備忘録の意味も込めて記事にします。"
 ---
 
+[宮崎 IT 関連勉強会 Advent Calendar 2019](https://qiita.com/advent-calendar/2019/miyazaki) 23日目の記事です。
+
 UnityではVRは簡単に実装できますが、VRとノーマルモードの切り替えがちょっとややこしいです。
 また、VRモードではタッチでの操作が出来ないため、視線イベントが必要となります。
 ボタンを3秒見つめたら、ボタンタッチとするという仕組みです。
 
 それと、UnityやGoogleVRのバージョンが上がるたびに仕様が変わっていくので、
 備忘録の意味も込めて現時点のバージョンの実装方法を記載します。
+
+説明で用いるプロジェクトを下記リポジトリに用意しているので、良ければ参考にしてください。
+
+https://github.com/sear-azazel/SampleVR.git
 
 # 前置き
 
@@ -158,6 +164,51 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
                     - Text
             - GameObject
         ```
+### Utility作成
+
+ゲームシーンを作成する前にVRモードとノーマルモードを切り替えるUtilityを作成します。
+
+Unityが保持するクラスでは、単純に切り替えが出来ないため、視線イベントのためのオブジェクトの設定も加えて実装します。
+
+新規にスクリプトを作成して、下記のように実装します。名前はXRUtilityとします。
+```C#
+// XRUtility.cs
+using System.Collections;
+using UnityEngine;
+using UnityEngine.XR;
+
+public class XRUtility : MonoBehaviour {
+    private const string DeviceNone = "None";
+    private const string DeviceCardboard = "Cardboard";
+
+    /// <summary>視線イベントのためのポインタ</summary>
+    [SerializeField] private GvrReticlePointer reticlePointer;
+    private static XRUtility instance;
+
+    /// <summary>VRモードの切り替え</summary>
+    public static bool IsEnabled {
+        get => XRSettings.enabled;
+        set => instance.StartCoroutine(instance.ChangeEnable(value));
+    }
+
+    private void Awake() {
+        instance = this;
+    }
+
+    private void Start() {
+        this.reticlePointer.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ChangeEnable(bool enabled) {
+        if (XRSettings.enabled == enabled) { yield break; }
+        XRSettings.LoadDeviceByName(enabled ? DeviceCardboard : DeviceNone);
+        yield return null;
+        XRSettings.enabled = enabled;
+        this.reticlePointer.gameObject.SetActive(enabled);
+    }
+}
+```
+
 ### ゲームシーン
 
 1. メニューシーンと同様にゲームシーンを作成します。
@@ -168,7 +219,7 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
         1. HierarchyタブでCanvasオブジェクトを選択し、Inspectorタブの**Canvas**コンポーネントで**Render Model**を**World Space**に変更してください。
             - そうすると、ボタンが極端に大きくなるので、CanvasのTransformコンポーネントのScaleを0.05前後にしてください。(X, Y, Z同じ値です。)
             - (補足)変更前のCanvasの設定では、画面の上に1枚のレイヤーが存在し、そこにボタンなどのUIを配置するイメージです。現実世界(とゲームの世界の境界線)のインターフェースですが、変更後は、ゲームの世界にボタンを配置するイメージです。そうすることによって、VRとしてボタンを表現することができるようになります。なので、**Render Model**が**World Space**以外だと、VRにはなりません。
-    1. 「Game」のスクリプトを下記のように作成します。
+    1. 新規にスクリプト作成し、下記のように作成します。名前をGame.csとします。
         ```C#
         // Game.cs
         using System.Collections;
@@ -180,42 +231,56 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
             [SerializeField] private Text countdownText;
             private Coroutine countdown = null;
 
-            // 視線(カーソル)がボタンに重なったときのイベント
+            /// <summary>視線(カーソル)がボタンに重なったときのイベント</summary>
+            /// <remarks>カウントダウンの処理を開始します</remarks>
             public void OnEnter() {
                 this.countdown = this.StartCoroutine(this.Countdown());
             }
 
-            // 視線(カーソル)がボタンから離れた時のイベント
+            /// <summary>視線(カーソル)がボタンから離れた時のイベント</summary>
+            /// <remarks>カウントダウンの処理を停止します</remarks>
             public void OnExit() {
                 this.StopCoroutine(this.countdown);
                 this.countdownText.text = string.Empty;
             }
 
-            // ボタンが重なって離れるまでに走る処理
-            // カウントダウンが終わったら、シーン遷移する
+            /// <summary>ボタンが重なって離れるまでに走る処理</summary>
+            /// <remarks>カウントダウンが終わったら、シーン遷移します</remarks>
             private IEnumerator Countdown() {
-                const int sec = ３;
-                float start = Time.realtimeSinceStartup;
-                float elapsed = sec;
-                do {
+                const int sec = 3;
+                float elapsed = 0;
+                while (elapsed < sec) {
                     this.countdownText.text = $"{(int)(sec - elapsed)}";
-                    elapsed = Time.realtimeSinceStartup - start;
+                    elapsed += Time.fixedDeltaTime;
                     yield return null;
-                } while (elapsed < sec);
+                }
                 SceneManager.LoadScene("Menu");
             }
         }
         ```
-    1. メニューシーンと同様にButtonのイベントにメソッドを紐付けます。
-        1. **Button**に**Event Trigger**コンポーネントを追加してください。
-        1. Add New Event Typeボタンをクリックして、Pointer EnterとPoiner Exitを追加してください。
-        1. メニューシーンの作成で、ButtonのOn Clickにメソッドを紐付けたように、以下２つを紐付けてください。
-            - Pointer Enter: OnEnter
-            - Pointer Exit: OnExit
+    1. 視線イベントによるカウントダウンを表示するため、CanvasにTextオブジェクトを追加します。
+        - Hierarchyタブ内のCanvasオブジェクト上で右クリック→UI→Textを選択してください。
+            - 表示位置は適宜修正してください。ボタンと重ならないくらいが丁度良いです。
+    1. メニューシーンの時と同様にスクリプトをアタッチするためのGameObjectを作成して、Game.csを追加してください。
+        1. Inspectorタブ上の**Game (Script)**コンポーネントに**Countdown Text**項目が表示されるので、先ほど作成したTextオブジェクトをHierarchy上から、**Countdown Text**項目の右に表示されている**None (Text)**部分にDrag&Dropしてください。
+        1. メニューシーンと同様にButtonのイベントにメソッドを紐付けます。
+            1. **Button**に**Event Trigger**コンポーネントを追加してください。
+            1. Add New Event Typeボタンをクリックして、Pointer EnterとPoiner Exitを追加してください。
+            1. メニューシーンの作成で、ButtonのOn Clickにメソッドを紐付けたように、以下２つを紐付けてください。
+                - Pointer Enter: OnEnter
+                - Pointer Exit: OnExit
+    1. Utilityスクリプトを追加します。
+        1. 先ほど作成したXRUtility.csをGame.csを追加したGameObjectに追加してください。
+        1. **XRUtility (Script)**コンポーネントに**Reticle Pointer**が表示されるので、Main Cameraの直下に配置した、GvrReticlePointerをDrag&Dropしてください。
     1. VR用のイベントを拾うための設定を行います。
-        - HierarchyタブからEvent Systemを削除して、GoogleVRのGvrEventSystem(Prefab)を追加してください。
+        1. HierarchyタブでEvent Systemを削除して、GoogleVRのGvrEventSystem(Prefab)をProjectタブからDrag&Dropして追加してください。
+            - Assets/GoogleVR/Prefabs にあります。
+        1. HierarchyタブのMain CameraにGvrReticlePointer(Prefab)を追加してください。
+            - Assets/GoogleVR/Prefabs/Cardboard にあります。
     1. エディタ上で動作確認するためのオブジェクトを配置します。
         - GvrEditorEmulator(Prefab)を追加してください。
+            - Assets/GoogleVR/Prefabs/EventSystem にあります。
+        - (補足)以前のGoogle VR SDKでは、エディタ上でのゲーム動作も2眼でしたが、現在のバージョンでは、ノーマルとしてしか動作できません。
     1. 最終的にHierarchyタブはこんな感じになります。
         ```txt
         [Heirarchy]
@@ -224,9 +289,12 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
             - Canvas
                 - Button
                     - Text
-            - GvrEventSystem
+                - Text
             - GameObject
+            - GvrEventSystem 注3
+            - GvrEditorEmulator 注3
         ```
+        - ___注3: Prefabとして追加したので、青いアイコンです___
 
 ## ビルド設定およびXRの有効化
 
@@ -245,35 +313,46 @@ Unityエディタのメニュー→File→Build Settings…と選択し、「Pla
     - Cardboard
 
 ### Other Settings
+
+#### Configuration
+- Api Compatibility Level: .NET 4.x
+
+#### [Android]
+#### Identification
+- Package Name: (よしなに)
+- Version: (よしなに)
+- Bundle Version Code: (よしなに)
+- Minimum API Level: Android 4.4 'KitKat' (API level 19)
+
+#### Target Architectures 
+- ARMv7: false
+- ARM64: true
+- x86: false
+
+#### [iOS]
 #### Identification
 - Bundle Identifier: (よしなに)
 - Version: (よしなに)
 - Build: (よしなに)
 
 #### Configuration
-- Api Compatibility Level: .NET 4.x (Androidの場合NDKが必須)
-
-#### [Androidのみ]
-#### Target Architectures 
-- ARMv7: false
-- ARM64: true
-- x86: false
-
-#### [iOSのみ]
 - Architecture: ARM64
 
+## ビルド
 
-## VR切り替え用スクリプトの作成
+各Pratform(Android or iOS)向けにビルドを行います。
+
+iOSの場合、Xcodeプロジェクトへのエクスポートになるので、エクスポートした後にXcodeでプロジェクトを開いてビルドしてください。ここではその手順は省きます。
+
+1. Unityエディタのメニュー→File→Build Settings…と選択してください。
+    - ビルドしたいPlatformが選択されていない場合は、Switch Pratformを行ってください。
+1. Buildボタンを押してください。
 
 
+# あとがき
 
-```C#
-var x = 0;
-```
+長くなった上に、文字が多くて分かりづらいですが、下記リポジトリに作成したプロジェクトをコミットしていますので、参考にしてください。
 
-## Cameraの設定
-カメラを固定したい場合に利用します。
-
-VRではデフォルトではトラッキングが有効になっているので、無効にする場合の設定を行います。
+https://github.com/sear-azazel/SampleVR.git
 
 以上
