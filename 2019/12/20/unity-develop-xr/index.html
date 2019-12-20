@@ -55,7 +55,7 @@
   },
   "genre": "posts",
   "keywords": "Unity, C#, 開発, VR",
-  "wordcount":  609 ,
+  "wordcount":  608 ,
   "url": "https:\/\/sear-azazel.github.io\/2019\/12\/20\/unity-develop-xr\/",
   "datePublished": "2019-12-20T00:00:00\x2b00:00",
   "dateModified": "2019-12-20T00:00:00\x2b00:00",
@@ -558,21 +558,13 @@
 <h2 id="xr">ビルド設定およびXRの有効化</h2>
 <p>Unityエディタのメニュー→File→Build Settings…と選択し、「Player Settings…」ボタンをクリックしてください。</p>
 <p>主な設定事項を以下に記載します。特に記載がない場合はiOS/Android共通です。</p>
-<h3 id="-resolution-and-presentation">[必須] Resolution and Presentation</h3>
+<hr>
+<h3 id="resolution-and-presentation">Resolution and Presentation</h3>
 <h4 id="orientation">Orientation</h4>
 <ul>
 <li>Default Orientation: Landscape (Left or Right)</li>
 </ul>
-<h3 id="-xr-settings">[必須] XR Settings</h3>
-<ul>
-<li>Virtual Reality Supported: true</li>
-<li>Virtual Reality SDKs <strong>(以下の順番は大事。上にある方がアプリ起動時の状態となるため)</strong>
-<ul>
-<li>None</li>
-<li>Cardboard</li>
-</ul>
-</li>
-</ul>
+<hr>
 <h3 id="other-settings">Other Settings</h3>
 <h4 id="android">[Android]</h4>
 <h4 id="identification">Identification</h4>
@@ -604,6 +596,17 @@
 <li>Api Compatibility Level: .NET 4.x</li>
 <li>Architecture: ARM64</li>
 </ul>
+<hr>
+<h3 id="xr-settings">XR Settings</h3>
+<ul>
+<li>Virtual Reality Supported: true</li>
+<li>Virtual Reality SDKs <strong>(以下の順番は大事。上にある方がアプリ起動時の状態となるため)</strong>
+<ul>
+<li>None</li>
+<li>Cardboard</li>
+</ul>
+</li>
+</ul>
 <h2 id="heading10">ビルド</h2>
 <p>各Pratform(iOS or Android)向けにビルドを行います。</p>
 <p>iOSの場合Xcodeプロジェクトへのエクスポートになるので、エクスポートした後にXcodeでプロジェクトを開いてビルドしてください。</p>
@@ -618,7 +621,8 @@
 <h1 id="heading11">あとがき</h1>
 <p>長くなった上に、文字が多くて分かりづらいですが、下記リポジトリに作成したプロジェクトをコミットしていますので、参考にしてください。</p>
 <p><a href="https://github.com/sear-azazel/SampleVR.git">https://github.com/sear-azazel/SampleVR.git</a></p>
-<p>※ Androidの動作確認は行いましたが、iOSはまだ行っていないため、確認が取れたら追記します。</p>
+<p><del>※ Androidの動作確認は行いましたが、iOSはまだ行っていないため、確認が取れたら追記します。</del></p>
+<p>iOS、Android共に確認が取れました。</p>
 <p>以上</p>
 
     </div>
@@ -633,7 +637,7 @@
            
             <p class="copyright-item">
                     <span>:</span>
-                   <span>609</span>
+                   <span>608</span>
             </p>
             
             <p class="copyright-item">
