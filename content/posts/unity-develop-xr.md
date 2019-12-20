@@ -306,16 +306,12 @@ Unityエディタのメニュー→File→Build Settings…と選択し、「Pla
 
 主な設定事項を以下に記載します。特に記載がない場合はiOS/Android共通です。
 
-### [必須] Resolution and Presentation
+---
+### Resolution and Presentation
 #### Orientation
 - Default Orientation: Landscape (Left or Right)
 
-### [必須] XR Settings
-- Virtual Reality Supported: true
-- Virtual Reality SDKs **(以下の順番は大事。上にある方がアプリ起動時の状態となるため)**
-    - None
-    - Cardboard
-
+---
 ### Other Settings
 
 #### [Android]
@@ -343,6 +339,13 @@ Unityエディタのメニュー→File→Build Settings…と選択し、「Pla
 - Api Compatibility Level: .NET 4.x
 - Architecture: ARM64
 
+---
+### XR Settings
+- Virtual Reality Supported: true
+- Virtual Reality SDKs **(以下の順番は大事。上にある方がアプリ起動時の状態となるため)**
+    - None
+    - Cardboard
+
 ## ビルド
 
 各Pratform(iOS or Android)向けにビルドを行います。
@@ -360,6 +363,8 @@ iOSの場合Xcodeプロジェクトへのエクスポートになるので、エ
 
 https://github.com/sear-azazel/SampleVR.git
 
-※ Androidの動作確認は行いましたが、iOSはまだ行っていないため、確認が取れたら追記します。
+~~※ Androidの動作確認は行いましたが、iOSはまだ行っていないため、確認が取れたら追記します。~~
+
+iOS、Android共に確認が取れました。
 
 以上
