@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://sear-azazel.github.io/2019/12/11/miyazaki-20-questions/" />
+  
+  <link rel="canonical" href="https://sear-azazel.github.io/2019/12/20/unity-develop-xr/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する | az
+       
+  </title>
+  <meta name="title" content="UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する | az">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する"/>
+<meta name="twitter:description" content="UnityのVR切り替えについて情報が少ないので備忘録の意味も込めて記事にします。"/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "UnityでVRアプリを作成しVR\/ノーマルの切り替えや視線イベントを実装する",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/sear-azazel.github.io\/2019\/12\/20\/unity-develop-xr\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/sear-azazel.github.io\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "posts",
+  "keywords": "Unity, C#, 開発, VR",
+  "wordcount":  609 ,
+  "url": "https:\/\/sear-azazel.github.io\/2019\/12\/20\/unity-develop-xr\/",
+  "datePublished": "2019-12-20T00:00:00\x2b00:00",
+  "dateModified": "2019-12-20T00:00:00\x2b00:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "az",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/sear-azazel.github.io\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "map[name:az]"
+  },
+  "description": "UnityのVR切り替えについて情報が少ないので備忘録の意味も込めて記事にします。"
+}
+</script>
+</head>
+
+  
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://sear-azazel.github.io/">az</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://sear-azazel.github.io/">az</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する</h1>
+        <div class="post-meta">
+              <a href="https://sear-azazel.github.io/" rel="author">map[name:az]</a>  ♥ 
+                <span class="post-time">
+                     <time datetime=2019-12-20 >20 December 2019</time>
+                </span>
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://sear-azazel.github.io/categories/unity/"> Unity </a>
+                        
+                </span>
+                <i class="iconfont icon-timer"></i>
+                3 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p><a href="https://qiita.com/advent-calendar/2019/miyazaki">宮崎 IT 関連勉強会 Advent Calendar 2019</a> 23日目の記事です。</p>
+<p>UnityではVRは簡単に実装できますが、VRとノーマルモードの切り替えがちょっとややこしいです。アプリ起動時はノーマルモードで、ゲーム開始後はVRモードにしたいという場面はあると思います。もしくは、VRがメインだけど、ノーマルモードでも遊べますよ、といったケースですね。</p>
+<p>また、VRモードではタッチでの操作が出来ないため、視線イベントが必要となります。
+ボタンを3秒見つめたら、ボタンタッチとするという仕組みです。コントローラが有れば、そういったことも必要ではなくなるのですが、ユーザが必ずしもコントローラを持っているとは限りません。</p>
+<p>そして、厄介なことにUnityやGoogleVRのバージョンが上がるたびに仕様が変わっていくので、
+備忘録の意味も込めて現時点のバージョンの実装方法を記載します。</p>
+<p>説明で用いるプロジェクトを下記リポジトリに用意しているので、良ければ参考にしてください。</p>
+<p><a href="https://github.com/sear-azazel/SampleVR.git">https://github.com/sear-azazel/SampleVR.git</a></p>
+<h1 id="heading">前置き</h1>
+<p>Google VR SDK for Unityのgithubリポジトリは現在アーカイブされています。</p>
+<p>Cardboardのソフトウェア関連技術がオープンソースとなり、またDaydreamの販売終了とニュースもありますが、Googleが完全にVR手放したとしても、ソースコードは生き続けるようです。</p>
+<h1 id="heading1">目標</h1>
+<p>UnityでVRを実装し、iOS or Androidに出力するまでを行います。</p>
+<p>また、アプリ起動時はノーマルモードの状態で、ゲーム開始時にVRモードになるように組み込みたいと思います。</p>
+<h1 id="heading2">前提条件</h1>
+<h3 id="heading3">必要なもの</h3>
+<ul>
+<li>スマートフォン
+<ul>
+<li>iOS or Android</li>
+</ul>
+</li>
+<li>開発環境/ツール(Unity以外)
+<ul>
+<li>Android SDK
+<ul>
+<li>Android NDKもあれば良い(必須ではない)</li>
+</ul>
+</li>
+<li>Xcode
+<ul>
+<li>iPhone用にビルドする場合は必須</li>
+</ul>
+</li>
+<li>Visual Studio (for Mac)
+<ul>
+<li>コーディングで利用する</li>
+<li>Unityと併せてインストールできる(はず)</li>
+<li>コードエディタは何でも良いが、利便性を考えるとVisual Studio一択</li>
+<li>おすすめはVisual Studio 2019 (Windows)
+<ul>
+<li>以前のバージョンに比べて3倍速い</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(補足)Cloud Build を契約すると、ビルドが自動化できて便利
+<ul>
+<li><a href="https://unity3d.com/jp/unity/features/cloud-build">https://unity3d.com/jp/unity/features/cloud-build</a></li>
+<li>月額999円～(無料期間有り)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="unity-hub">Unity Hubのバージョン</h3>
+<ul>
+<li><del>2.2.1</del> 2.2.2 (執筆中にバージョンが上がりました)
+<ul>
+<li><a href="https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup.exe">Unity Hub</a> ← ここからダウンロード</li>
+<li>(補足) Unityをプロジェクトごとにバージョン指定して利用するためのHubツール
+<ul>
+<li>複数のバージョンのUnityをディレクトリを分けてインストール出来る
+<ul>
+<li>複数プロジェクトを扱う時に便利</li>
+</ul>
+</li>
+<li>利用しなくても問題ない</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="unity">Unityのバージョン</h3>
+<ul>
+<li><del>2018.4.13f (LTS)</del> 2018.4.14f (LTS) (執筆中にバージョンが上がりました)
+<ul>
+<li>Unity Hubからインストール</li>
+</ul>
+</li>
+<li>その他のバージョン及び、直接ダウンロードする場合はこちら
+<ul>
+<li><a href="https://unity3d.com/jp/get-unity/download/archive">Unity ダウンロードアーカイブ</a></li>
+<li><a href="https://unity3d.com/jp/unity/qa/lts-releases">長期サポート</a></li>
+<li><a href="https://unity3d.com/jp/unity/qa/patch-releases">パッチリリース</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="google-vr">google VRのバージョン</h3>
+<ul>
+<li>v1.200.1
+<ul>
+<li><a href="https://github.com/googlevr/gvr-unity-sdk/releases/">Google VR SDK for Unity</a> ← ここからダウンロード
+<ul>
+<li>GoogleVRForUnity_1.200.1.unitypackageをダウンロードする</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="heading4">開発前補足</h1>
+<p>VRとそうでない状態の言葉を使い分けるために、VRモード、ノーマルモードという言葉を使います。</p>
+<h1 id="heading5">開発手順</h1>
+<h2 id="unity1">Unityでプロジェクトを作る</h2>
+<p>メニューシーンとゲームシーンの2つを用意して、VRモードとノーマルモードを切り替えるための準備をします。
+今回は簡単に、メニューシーンに「開始」ボタン、ゲームシーンに「終了」ボタンを設けて実現したいと思います。</p>
+<h3 id="heading6">プロジェクト共通</h3>
+<ol>
+<li>Unity Hub (もしくはUnity)を起動して、プロジェクトを作成します。
+<ul>
+<li>テンプレートは3Dを選択してください。</li>
+</ul>
+</li>
+<li>Unityエディタ上に複数タブが表示されますが、下記タブが常時表示されていると開発しやすいと思います。タブの説明を併せて簡単に行います。
+<ul>
+<li>Hierarchy
+<ul>
+<li>3D空間上に配置するオブジェクトが階層状態で表示されます。子階層のオブジェクトは位置/回転、表示状態に依存します。</li>
+</ul>
+</li>
+<li>Project
+<ul>
+<li>Unityプロジェクトで用いるファイルが表示されます。プラグインやスクリプト、3Dオブジェクトモデル、画像、音源などの実ファイルです。Explorer/Finderのファイルがそのまま表示されています。(.metaデータ除く)</li>
+</ul>
+</li>
+<li>Inspector
+<ul>
+<li>Hierarchyタブで選択したオブジェクトのコンポーネントが表示されます。コンポーネントは自由に追加/削除出来ます。全てのオブジェクトはTransformコンポーネントがアタッチされており、このコンポーネントが位置/回転/スケール情報を持っています。</li>
+</ul>
+</li>
+<li>Scene
+<ul>
+<li>3D空間です。実際に配置したオブジェクトが表示されます。この画面でもオブジェクトを直接移動/回転/リスケール出来ます。</li>
+</ul>
+</li>
+<li>Game
+<ul>
+<li>アプリとして起動する状態が確認できます。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="heading7">プラグインのインポート</h3>
+<p>Google VR SDK for Unityプラグインのインポートを行います。</p>
+<p>Unityエディタのメニュー→Assets→Import Package→Custom Package…と選択し、ダウンロードしたGoogle VR SDK(GoogleVRForUnity_1.200.1.unitypackage)を選択します。</p>
+<p>インポートには少々時間がかかります。</p>
+<h3 id="heading8">メニューシーン</h3>
+<ol>
+<li>シーンファイルを作成します。
+<ul>
+<li>デフォルトで作成されている「SampleScene」をリネームして「Menu」とします。</li>
+</ul>
+</li>
+<li>ゲームシーンへ遷移するための「開始」ボタンを配置します。
+<ol>
+<li>Hierarchyタブで右クリック→UI→Buttonと選択してください。
+<ul>
+<li>Gameタブの真ん中にボタンが配置されます。</li>
+</ul>
+</li>
+<li>HierarchyタブでTextオブジェクトを選択し、<strong>Text (Script)</strong> コンポーネントでボタンのラベルを「開始」に変更してください。</li>
+</ol>
+<ul>
+<li>(補足)ボタンが小さい or 大きい場合は、Canvasの設定で適宜キャンバスサイズを調整してください。
+<ol>
+<li>HierarchyタブのCanvasを選択し、<strong>Canvas Scaler (Script)</strong> コンポーネントの<strong>UI Scale Mode</strong>を<strong>Scale With Screen Size</strong>に変更します。</li>
+<li><strong>Reference Resolution</strong>を X: 1280、Y: 720にすると丁度良いかもしれません。</li>
+</ol>
+</li>
+<li>(補足の補足)上記設定はキャンバスのサイズを固定化することが出来ます。UnityエディタのGameタブや実機の解像度に関係なくそのサイズでキャンバス内のオブジェクトをサイジングします。</li>
+</ul>
+</li>
+<li>「開始」ボタンにシーン遷移スクリプトを追加します。
+<ol>
+<li>Projectタブで右クリック→Create→C# Scriptと選択し、「Menu」のスクリプトを作成してください。</li>
+<li>Unityエディタのメニュー→Assets→Open C# Projectと選択し、Visual Studioを起動します。</li>
+<li>下記のように実装します。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#75715e">// Menu.cs
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> UnityEngine;
+<span style="color:#66d9ef">using</span> UnityEngine.SceneManagement;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Menu</span> : MonoBehaviour {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> PlayGame() {
+        SceneManager.LoadScene(<span style="color:#e6db74">&#34;Game&#34;</span>); <span style="color:#75715e">// 注1
+</span><span style="color:#75715e"></span>    }
+}
+</code></pre></div><ul>
+<li><em><strong>注1: &ldquo;Game&quot;の文字列は作成したシーン名と同じにしてください。</strong></em></li>
+</ul>
+</li>
+<li>スクリプトをアタッチするためのGameObjectを作成します。
+<ul>
+<li>Hierarycyタブ内の空きスペースで右クリック→GameObjectと選択してください。
+<ul>
+<li><em><strong>別のオブジェクトの配下にGameObjectが追加されても問題はありませんが、気になる場合はDrag&amp;Dropで適宜移動させてください。</strong></em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>作成したGameObjectを選択した状態で、InspectorタブにあるAdd Compornentを選択し、作成したMenu.csを追加します。</li>
+<li>Buttonのクリックイベントに作成したスクリプトのメソッドを紐づけます。
+<ol>
+<li>HierarchyタブでButtonオブジェクトを選択し、<strong>Button (Script)</strong> の<strong>On Click ()</strong> 右下の&quot;+&rdquo;(プラスボタン)をクリックしてください。</li>
+<li><strong>On Click ()</strong> 枠内に左下にある<strong>None (Object)</strong> の部分に作成したGameObjectをDrag&amp;Dropします。</li>
+<li><strong>On Click ()</strong> 枠内に右上にある<strong>No Function</strong> をリストダウンしてMenu→PlayGameと選択してください。(作成したMenu.csのメソッドです。)</li>
+</ol>
+</li>
+<li>最終的にHierarchyタブはこんな感じになります。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">[Heirarchy]
+    - Main Camera
+    - Directional Light
+    - EventSystem
+    - Canvas
+        - Button
+            - Text
+    - GameObject
+</code></pre></div></li>
+</ol>
+</li>
+</ol>
+<h3 id="utility">Utility作成</h3>
+<p>ゲームシーンを作成する前にVRモードとノーマルモードを切り替えるUtilityを作成します。</p>
+<p>Unityが保持するクラス(XRSettings)では単純な切り替えが出来ないため、視線イベントのためのオブジェクトの設定も併せて実装します。</p>
+<p>新規にスクリプトを作成して、下記のように実装します。名前はXRUtilityとします。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#75715e">// XRUtility.cs
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> System.Collections;
+<span style="color:#66d9ef">using</span> UnityEngine;
+<span style="color:#66d9ef">using</span> UnityEngine.XR;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XRUtility</span> : MonoBehaviour {
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> DeviceNone = <span style="color:#e6db74">&#34;None&#34;</span>;
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> DeviceCardboard = <span style="color:#e6db74">&#34;Cardboard&#34;</span>;
+
+    <span style="color:#75715e">/// &lt;summary&gt;視線イベントのためのポインタ&lt;/summary&gt;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">    [SerializeField]</span> <span style="color:#66d9ef">private</span> GvrReticlePointer reticlePointer;
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> XRUtility instance;
+
+    <span style="color:#75715e">/// &lt;summary&gt;VRモードの切り替え&lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsEnabled {
+        <span style="color:#66d9ef">get</span> =&gt; XRSettings.enabled;
+        <span style="color:#66d9ef">set</span> =&gt; instance.StartCoroutine(instance.ChangeEnable(<span style="color:#66d9ef">value</span>));
+    }
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> Awake() {
+        instance = <span style="color:#66d9ef">this</span>;
+    }
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> Start() {
+        <span style="color:#66d9ef">this</span>.reticlePointer.gameObject.SetActive(<span style="color:#66d9ef">false</span>);
+    }
+
+    <span style="color:#66d9ef">private</span> IEnumerator ChangeEnable(<span style="color:#66d9ef">bool</span> enabled) {
+        <span style="color:#66d9ef">if</span> (XRSettings.enabled == enabled) { <span style="color:#66d9ef">yield</span> <span style="color:#66d9ef">break</span>; }
+        XRSettings.LoadDeviceByName(enabled ? DeviceCardboard : DeviceNone);
+        <span style="color:#66d9ef">yield</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+        XRSettings.enabled = enabled;
+        <span style="color:#66d9ef">this</span>.reticlePointer.gameObject.SetActive(enabled);
+    }
+}
+</code></pre></div><h3 id="heading9">ゲームシーン</h3>
+<ol>
+<li>メニューシーンと同様にゲームシーンを作成します。
+<ol>
+<li>Projectタブで右クリック→Create→Sceneと選択して、「Game」シーンを作成します。</li>
+</ol>
+</li>
+<li>メニューシーンへ遷移するための「終了」ボタンを作成します。
+<ol>
+<li>作り方は「開始」と同じです。</li>
+<li>メニューシーンと異なるのはCanvasの設定です。
+<ol>
+<li>HierarchyタブでCanvasオブジェクトを選択し、Inspectorタブの<strong>Canvas</strong>コンポーネントで<strong>Render Model</strong>を<strong>World Space</strong>に変更してください。
+<ul>
+<li>そうすると、ボタンが極端に大きくなるので、CanvasのTransformコンポーネントのScaleを0.05前後にしてください。(X, Y, Z同じ値です。)</li>
+<li>(補足)変更前のCanvasの設定では、画面の上に1枚のレイヤーが存在し、そこにボタンなどのUIを配置するイメージです。現実世界(とゲームの世界の境界線)のインターフェースですが、変更後は、ゲームの世界にボタンを配置するイメージです。そうすることによって、VRとしてボタンを表現することができるようになります。なので、<strong>Render Model</strong>が<strong>World Space</strong>以外だと、VRにはなりません。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>新規にスクリプト作成し、下記のように作成します。名前をGame.csとします。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#75715e">// Game.cs
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> System.Collections;
+<span style="color:#66d9ef">using</span> UnityEngine;
+<span style="color:#66d9ef">using</span> UnityEngine.SceneManagement;
+<span style="color:#66d9ef">using</span> UnityEngine.UI;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Game</span> : MonoBehaviour {
+<span style="color:#a6e22e">    [SerializeField]</span> <span style="color:#66d9ef">private</span> Text countdownText;
+    <span style="color:#66d9ef">private</span> Coroutine countdown = <span style="color:#66d9ef">null</span>;
+
+    <span style="color:#75715e">/// &lt;summary&gt;視線(カーソル)がボタンに重なったときのイベント&lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;remarks&gt;カウントダウンの処理を開始します&lt;/remarks&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnEnter() {
+        <span style="color:#66d9ef">this</span>.countdown = <span style="color:#66d9ef">this</span>.StartCoroutine(<span style="color:#66d9ef">this</span>.Countdown());
+    }
+
+    <span style="color:#75715e">/// &lt;summary&gt;視線(カーソル)がボタンから離れた時のイベント&lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;remarks&gt;カウントダウンの処理を停止します&lt;/remarks&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnExit() {
+        <span style="color:#66d9ef">this</span>.StopCoroutine(<span style="color:#66d9ef">this</span>.countdown);
+        <span style="color:#66d9ef">this</span>.countdownText.text = <span style="color:#66d9ef">string</span>.Empty;
+    }
+
+    <span style="color:#75715e">/// &lt;summary&gt;ボタンが重なって離れるまでに走る処理&lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &lt;remarks&gt;カウントダウンが終わったら、シーン遷移します&lt;/remarks&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> IEnumerator Countdown() {
+        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> sec = <span style="color:#ae81ff">3</span>;
+        <span style="color:#66d9ef">float</span> elapsed = <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> (elapsed &lt; sec) {
+            <span style="color:#66d9ef">this</span>.countdownText.text = <span style="color:#e6db74">$&#34;{(int)(sec - elapsed)}&#34;</span>;
+            elapsed += Time.fixedDeltaTime;
+            <span style="color:#66d9ef">yield</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+        }
+        SceneManager.LoadScene(<span style="color:#e6db74">&#34;Menu&#34;</span>);
+    }
+}
+</code></pre></div></li>
+<li>視線イベントによるカウントダウンを表示するため、CanvasにTextオブジェクトを追加します。
+<ul>
+<li>Hierarchyタブ内のCanvasオブジェクト上で右クリック→UI→Textを選択してください。
+<ul>
+<li>表示位置は適宜修正してください。ボタンと重ならないくらいが丁度良いです。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>メニューシーンの時と同様にスクリプトをアタッチするためのGameObjectを作成して、Game.csを追加してください。
+<ol>
+<li>Inspectorタブ上の<strong>Game (Script)<strong>コンポーネントに</strong>Countdown Text</strong>項目が表示されるので、作成したTextオブジェクトをHierarchy上から、<strong>Countdown Text</strong>項目の右に表示されている<strong>None (Text)</strong> 部分にDrag&amp;Dropしてください。</li>
+<li>メニューシーンと同様にButtonのイベントにメソッドを紐付けます。
+<ol>
+<li><strong>Button</strong>に<strong>Event Trigger</strong>コンポーネントを追加してください。</li>
+<li>Add New Event Typeボタンをクリックして、Pointer EnterとPoiner Exitを追加してください。</li>
+<li>メニューシーンの作成で、ButtonのOn Clickにメソッドを紐付けたように、以下２つを紐付けてください。
+<ul>
+<li>Pointer Enter: OnEnter</li>
+<li>Pointer Exit: OnExit</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Utilityスクリプトを追加します。
+<ol>
+<li>作成したXRUtility.csをGame.csを追加したGameObjectに追加してください。</li>
+<li><strong>XRUtility (Script)<strong>コンポーネントに</strong>Reticle Pointer</strong>が表示されるので、Main Cameraの直下に配置した、GvrReticlePointerをDrag&amp;Dropしてください。</li>
+</ol>
+</li>
+<li>VR用のイベントを拾うための設定を行います。
+<ol>
+<li>HierarchyタブでEvent Systemを削除して、GoogleVRのGvrEventSystem(Prefab)をProjectタブからDrag&amp;Dropして追加してください。
+<ul>
+<li>Assets/GoogleVR/Prefabs にあります。</li>
+</ul>
+</li>
+<li>HierarchyタブのMain CameraにGvrReticlePointer(Prefab)を追加してください。
+<ul>
+<li>Assets/GoogleVR/Prefabs/Cardboard にあります。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>エディタ上で動作確認するためのオブジェクトを配置します。
+<ul>
+<li>GvrEditorEmulator(Prefab)を追加してください。
+<ul>
+<li>Assets/GoogleVR/Prefabs/EventSystem にあります。</li>
+</ul>
+</li>
+<li>(補足)以前のGoogle VR SDKでは、エディタ上でのゲーム動作も2眼でしたが、現在のバージョンでは、ノーマルとしてしか動作できません。</li>
+</ul>
+</li>
+<li>最終的にHierarchyタブはこんな感じになります。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">[Heirarchy]
+    - Main Camera
+        - GvrReticlePointer 注2
+    - Directional Light
+    - Canvas
+        - Button
+            - Text
+        - Text
+    - GameObject
+    - GvrEventSystem 注2
+    - GvrEditorEmulator 注2
+</code></pre></div><ul>
+<li><em><strong>注2: Prefabとして追加したので、青いアイコンです</strong></em></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="xr">ビルド設定およびXRの有効化</h2>
+<p>Unityエディタのメニュー→File→Build Settings…と選択し、「Player Settings…」ボタンをクリックしてください。</p>
+<p>主な設定事項を以下に記載します。特に記載がない場合はiOS/Android共通です。</p>
+<h3 id="-resolution-and-presentation">[必須] Resolution and Presentation</h3>
+<h4 id="orientation">Orientation</h4>
+<ul>
+<li>Default Orientation: Landscape (Left or Right)</li>
+</ul>
+<h3 id="-xr-settings">[必須] XR Settings</h3>
+<ul>
+<li>Virtual Reality Supported: true</li>
+<li>Virtual Reality SDKs <strong>(以下の順番は大事。上にある方がアプリ起動時の状態となるため)</strong>
+<ul>
+<li>None</li>
+<li>Cardboard</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-settings">Other Settings</h3>
+<h4 id="android">[Android]</h4>
+<h4 id="identification">Identification</h4>
+<ul>
+<li>Package Name: 例) com.miyazakis.samplevr</li>
+<li>Version: 例) 0.0.1</li>
+<li>Bundle Version Code: 例) 1</li>
+<li>Minimum API Level: Android 4.4 &lsquo;KitKat&rsquo; (API level 19)</li>
+</ul>
+<h4 id="target-architectures">Target Architectures</h4>
+<ul>
+<li>ARMv7: false</li>
+<li>ARM64: true</li>
+<li>x86: false</li>
+</ul>
+<h4 id="configuration">Configuration</h4>
+<ul>
+<li>Api Compatibility Level: .NET 4.x</li>
+</ul>
+<h4 id="ios">[iOS]</h4>
+<h4 id="identification1">Identification</h4>
+<ul>
+<li>Bundle Identifier: 例) com.miyazakis.samplevr</li>
+<li>Version: 例) 0.0.1</li>
+<li>Build: 例) 1</li>
+</ul>
+<h4 id="configuration1">Configuration</h4>
+<ul>
+<li>Api Compatibility Level: .NET 4.x</li>
+<li>Architecture: ARM64</li>
+</ul>
+<h2 id="heading10">ビルド</h2>
+<p>各Pratform(iOS or Android)向けにビルドを行います。</p>
+<p>iOSの場合Xcodeプロジェクトへのエクスポートになるので、エクスポートした後にXcodeでプロジェクトを開いてビルドしてください。</p>
+<ol>
+<li>Unityエディタのメニュー→File→Build Settings…と選択してください。
+<ul>
+<li>ビルドしたいPlatformが選択されていない場合は、Switch Pratformを行ってください。</li>
+</ul>
+</li>
+<li>Buildボタンを押してください。</li>
+</ol>
+<h1 id="heading11">あとがき</h1>
+<p>長くなった上に、文字が多くて分かりづらいですが、下記リポジトリに作成したプロジェクトをコミットしていますので、参考にしてください。</p>
+<p><a href="https://github.com/sear-azazel/SampleVR.git">https://github.com/sear-azazel/SampleVR.git</a></p>
+<p>※ Androidの動作確認は行いましたが、iOSはまだ行っていないため、確認が取れたら追記します。</p>
+<p>以上</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>:</span>
+                <span>az </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>:</span>
+                   <span>609</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>:</span>
+                <span>
+
+      
+        <a href="//twitter.com/share?url=https%3a%2f%2fsear-azazel.github.io%2f2019%2f12%2f20%2funity-develop-xr%2f&amp;text=Unity%e3%81%a7VR%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e4%bd%9c%e6%88%90%e3%81%97VR%2f%e3%83%8e%e3%83%bc%e3%83%9e%e3%83%ab%e3%81%ae%e5%88%87%e3%82%8a%e6%9b%bf%e3%81%88%e3%82%84%e8%a6%96%e7%b7%9a%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%92%e5%ae%9f%e8%a3%85%e3%81%99%e3%82%8b&amp;via=az_sear" target="_blank" title="Share on Twitter">
+          <i class="iconfont icon-twitter"></i>
+        </a>
+        
+      
+      
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsear-azazel.github.io%2f2019%2f12%2f20%2funity-develop-xr%2f" target="_blank" title="Share on Facebook">
+          <i class="iconfont icon-facebook"></i>
+        </a>
+        
+      
+      
+      
+      
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-icon-tag"></i>: 
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/unity/">
+                    #Unity</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/c/">
+                    #C#</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/%E9%96%8B%E7%99%BA/">
+                    #開発</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/vr/">
+                    #VR</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();"></a></span> · 
+                <span><a href="https://sear-azazel.github.io/"></a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://sear-azazel.github.io/2019/12/11/miyazaki-20-questions/" class="prev" rel="prev" title="「宮崎に住むエンジニアさんに20の質問」に回答してみた"><i class="iconfont icon-dajiantou"></i>&nbsp;「宮崎に住むエンジニアさんに20の質問」に回答してみた</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+          
+
+ 
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2012 - 2019</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://sear-azazel.github.io/">az</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>

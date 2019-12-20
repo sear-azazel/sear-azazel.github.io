@@ -2,9 +2,9 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
-      <loc>https://sear-azazel.github.io/tags/20%E3%81%AE%E8%B3%AA%E5%95%8F/</loc>
+      <loc>https://sear-azazel.github.io/</loc>
       
-      <lastmod>2019-12-11T12:00:00+00:00</lastmod>
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
       
       
       <changefreq>monthly</changefreq>
@@ -16,9 +16,9 @@
     </url>
   
     <url>
-      <loc>https://sear-azazel.github.io/</loc>
+      <loc>https://sear-azazel.github.io/tags/c#/</loc>
       
-      <lastmod>2019-12-11T12:00:00+00:00</lastmod>
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
       
       
       <changefreq>monthly</changefreq>
@@ -32,7 +32,7 @@
     <url>
       <loc>https://sear-azazel.github.io/categories/</loc>
       
-      <lastmod>2019-12-11T12:00:00+00:00</lastmod>
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
       
       
       <changefreq>monthly</changefreq>
@@ -46,7 +46,7 @@
     <url>
       <loc>https://sear-azazel.github.io/posts/</loc>
       
-      <lastmod>2019-12-11T12:00:00+00:00</lastmod>
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
       
       
       <changefreq>monthly</changefreq>
@@ -59,6 +59,90 @@
   
     <url>
       <loc>https://sear-azazel.github.io/tags/</loc>
+      
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+      
+      
+      <changefreq>monthly</changefreq>
+      
+      
+      <priority>0.5</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://sear-azazel.github.io/categories/unity/</loc>
+      
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+      
+      
+      <changefreq>monthly</changefreq>
+      
+      
+      <priority>0.5</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://sear-azazel.github.io/tags/unity/</loc>
+      
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+      
+      
+      <changefreq>monthly</changefreq>
+      
+      
+      <priority>0.5</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://sear-azazel.github.io/2019/12/20/unity-develop-xr/</loc>
+      
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+      
+      
+      <changefreq>monthly</changefreq>
+      
+      
+      <priority>0.5</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://sear-azazel.github.io/tags/vr/</loc>
+      
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+      
+      
+      <changefreq>monthly</changefreq>
+      
+      
+      <priority>0.5</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://sear-azazel.github.io/tags/%E9%96%8B%E7%99%BA/</loc>
+      
+      <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+      
+      
+      <changefreq>monthly</changefreq>
+      
+      
+      <priority>0.5</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://sear-azazel.github.io/tags/20%E3%81%AE%E8%B3%AA%E5%95%8F/</loc>
       
       <lastmod>2019-12-11T12:00:00+00:00</lastmod>
       
