@@ -1,13 +1,13 @@
 ---
 author:
   name: "az"
-date: 2019-12-17 00:00:00
+date: 2019-12-20
 linktitle: "UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する"
 type:
 - post
 - posts
 title: "UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する"
-draft: true
+draft: false
 tags: ["Unity", "C#", "開発", "VR"]
 categories: ["Unity"]
 description: "UnityのVR切り替えについて情報が少ないので備忘録の意味も込めて記事にします。"
@@ -15,11 +15,12 @@ description: "UnityのVR切り替えについて情報が少ないので備忘�
 
 [宮崎 IT 関連勉強会 Advent Calendar 2019](https://qiita.com/advent-calendar/2019/miyazaki) 23日目の記事です。
 
-UnityではVRは簡単に実装できますが、VRとノーマルモードの切り替えがちょっとややこしいです。
-また、VRモードではタッチでの操作が出来ないため、視線イベントが必要となります。
-ボタンを3秒見つめたら、ボタンタッチとするという仕組みです。
+UnityではVRは簡単に実装できますが、VRとノーマルモードの切り替えがちょっとややこしいです。アプリ起動時はノーマルモードで、ゲーム開始後はVRモードにしたいという場面はあると思います。もしくは、VRがメインだけど、ノーマルモードでも遊べますよ、といったケースですね。
 
-それと、UnityやGoogleVRのバージョンが上がるたびに仕様が変わっていくので、
+また、VRモードではタッチでの操作が出来ないため、視線イベントが必要となります。
+ボタンを3秒見つめたら、ボタンタッチとするという仕組みです。コントローラが有れば、そういったことも必要ではなくなるのですが、ユーザが必ずしもコントローラを持っているとは限りません。
+
+そして、厄介なことにUnityやGoogleVRのバージョンが上がるたびに仕様が変わっていくので、
 備忘録の意味も込めて現時点のバージョンの実装方法を記載します。
 
 説明で用いるプロジェクトを下記リポジトリに用意しているので、良ければ参考にしてください。
@@ -30,15 +31,13 @@ https://github.com/sear-azazel/SampleVR.git
 
 Google VR SDK for Unityのgithubリポジトリは現在アーカイブされています。
 
-Cardboardのソフトウェア関連技術がオープンソース化となり、
-Daydreamの販売終了とニュースもありますが、Googleが完全にVR手放したとしても、
-ソースコードは生き続けるようです。
+Cardboardのソフトウェア関連技術がオープンソースとなり、またDaydreamの販売終了とニュースもありますが、Googleが完全にVR手放したとしても、ソースコードは生き続けるようです。
 
 # 目標
 
 UnityでVRを実装し、iOS or Androidに出力するまでを行います。
 
-また、アプリ起動時は1眼(ノーマルモード)の状態で、ゲーム開始時に2眼(VRモード)になるように組み込みたいと思います。
+また、アプリ起動時はノーマルモードの状態で、ゲーム開始時にVRモードになるように組み込みたいと思います。
 
 # 前提条件
 
@@ -50,16 +49,20 @@ UnityでVRを実装し、iOS or Androidに出力するまでを行います。
     - Android SDK
         - Android NDKもあれば良い(必須ではない)
     - Xcode
+        - iPhone用にビルドする場合は必須
     - Visual Studio (for Mac)
         - コーディングで利用する
         - Unityと併せてインストールできる(はず)
         - コードエディタは何でも良いが、利便性を考えるとVisual Studio一択
         - おすすめはVisual Studio 2019 (Windows)
             - 以前のバージョンに比べて3倍速い
+    - (補足)Cloud Build を契約すると、ビルドが自動化できて便利
+        - https://unity3d.com/jp/unity/features/cloud-build
+        - 月額999円～(無料期間有り)
 
 ### Unity Hubのバージョン
 
-- 2.2.1
+- ~~2.2.1~~ 2.2.2 (執筆中にバージョンが上がりました)
     - [Unity Hub](https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup.exe) ← ここからダウンロード
     - (補足) Unityをプロジェクトごとにバージョン指定して利用するためのHubツール
         - 複数のバージョンのUnityをディレクトリを分けてインストール出来る
@@ -68,7 +71,7 @@ UnityでVRを実装し、iOS or Androidに出力するまでを行います。
 
 ### Unityのバージョン
 
-- 2018.4.13f (LTS)
+- ~~2018.4.13f (LTS)~~ 2018.4.14f (LTS) (執筆中にバージョンが上がりました)
     - Unity Hubからインストール
 - その他のバージョン及び、直接ダウンロードする場合はこちら
     - [Unity ダウンロードアーカイブ](https://unity3d.com/jp/get-unity/download/archive)
@@ -87,14 +90,6 @@ VRとそうでない状態の言葉を使い分けるために、VRモード、�
 
 # 開発手順
 
-## プラグインのインポート
-
-まずは、プラグインのインポートを行います。
-
-Unityエディタのメニュー→Assets→Import Package→Custom Package…と選択し、ダウンロードしたGoogle VR SDK(GoogleVRForUnity_1.200.1.unitypackage)を選択します。
-
-インポートには少々時間がかかります。
-
 ## Unityでプロジェクトを作る
 
 メニューシーンとゲームシーンの2つを用意して、VRモードとノーマルモードを切り替えるための準備をします。
@@ -102,7 +97,7 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
 
 ### プロジェクト共通
 
-1. Unityを立ち上げて、プロジェクトを作成します。
+1. Unity Hub (もしくはUnity)を起動して、プロジェクトを作成します。
     - テンプレートは3Dを選択してください。
 1. Unityエディタ上に複数タブが表示されますが、下記タブが常時表示されていると開発しやすいと思います。タブの説明を併せて簡単に行います。
     - Hierarchy
@@ -116,9 +111,17 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
     - Game
         - アプリとして起動する状態が確認できます。
 
+### プラグインのインポート
+
+Google VR SDK for Unityプラグインのインポートを行います。
+
+Unityエディタのメニュー→Assets→Import Package→Custom Package…と選択し、ダウンロードしたGoogle VR SDK(GoogleVRForUnity_1.200.1.unitypackage)を選択します。
+
+インポートには少々時間がかかります。
+
 ### メニューシーン
 
-1. メニューシーンを作成します。
+1. シーンファイルを作成します。
     - デフォルトで作成されている「SampleScene」をリネームして「Menu」とします。
 1. ゲームシーンへ遷移するための「開始」ボタンを配置します。
     1. Hierarchyタブで右クリック→UI→Buttonと選択してください。
@@ -145,14 +148,13 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
         ```
         - ___注1: "Game"の文字列は作成したシーン名と同じにしてください。___
     1. スクリプトをアタッチするためのGameObjectを作成します。
-        - Hierarycyタブ内の空きスペース(注2)で右クリック→GameObjectと選択してください。
-        - ___注2: 別のオブジェクトの配下にGameObjectが追加されても問題はありませんが、気になる場合はDrag&Dropで適宜移動させてください。___
-    1. 作成したGameObjectを選択した状態で、InspectorタブにあるAdd Compornentを選択し、先ほど作成したMenu.csを追加します。
-    1. Buttonのクリックイベントに先ほど作成したスクリプトのメソッドを紐づけます。
+        - Hierarycyタブ内の空きスペースで右クリック→GameObjectと選択してください。
+            - ___別のオブジェクトの配下にGameObjectが追加されても問題はありませんが、気になる場合はDrag&Dropで適宜移動させてください。___
+    1. 作成したGameObjectを選択した状態で、InspectorタブにあるAdd Compornentを選択し、作成したMenu.csを追加します。
+    1. Buttonのクリックイベントに作成したスクリプトのメソッドを紐づけます。
         1. HierarchyタブでButtonオブジェクトを選択し、**Button (Script)** の**On Click ()** 右下の"+"(プラスボタン)をクリックしてください。
-        1. **On Click ()** 枠内に左下にある、**None (Object)** の部分に先ほど作成したGameObjectをDrag&Dropします。
-        1. **On Click ()** 枠内に右上にある、**No Function** をリストダウンして、Menu→PlayGameと選択してください。
-            - 先ほど作成したスクリプトのメソッドです。
+        1. **On Click ()** 枠内に左下にある**None (Object)** の部分に作成したGameObjectをDrag&Dropします。
+        1. **On Click ()** 枠内に右上にある**No Function** をリストダウンしてMenu→PlayGameと選択してください。(作成したMenu.csのメソッドです。)
     1. 最終的にHierarchyタブはこんな感じになります。
         ```txt
         [Heirarchy]
@@ -164,11 +166,12 @@ Unityエディタのメニュー→Assets→Import Package→Custom Package…�
                     - Text
             - GameObject
         ```
+
 ### Utility作成
 
 ゲームシーンを作成する前にVRモードとノーマルモードを切り替えるUtilityを作成します。
 
-Unityが保持するクラスでは、単純に切り替えが出来ないため、視線イベントのためのオブジェクトの設定も加えて実装します。
+Unityが保持するクラス(XRSettings)では単純な切り替えが出来ないため、視線イベントのためのオブジェクトの設定も併せて実装します。
 
 新規にスクリプトを作成して、下記のように実装します。名前はXRUtilityとします。
 ```C#
@@ -262,7 +265,7 @@ public class XRUtility : MonoBehaviour {
         - Hierarchyタブ内のCanvasオブジェクト上で右クリック→UI→Textを選択してください。
             - 表示位置は適宜修正してください。ボタンと重ならないくらいが丁度良いです。
     1. メニューシーンの時と同様にスクリプトをアタッチするためのGameObjectを作成して、Game.csを追加してください。
-        1. Inspectorタブ上の**Game (Script)**コンポーネントに**Countdown Text**項目が表示されるので、先ほど作成したTextオブジェクトをHierarchy上から、**Countdown Text**項目の右に表示されている**None (Text)**部分にDrag&Dropしてください。
+        1. Inspectorタブ上の**Game (Script)**コンポーネントに**Countdown Text**項目が表示されるので、作成したTextオブジェクトをHierarchy上から、**Countdown Text**項目の右に表示されている**None (Text)** 部分にDrag&Dropしてください。
         1. メニューシーンと同様にButtonのイベントにメソッドを紐付けます。
             1. **Button**に**Event Trigger**コンポーネントを追加してください。
             1. Add New Event Typeボタンをクリックして、Pointer EnterとPoiner Exitを追加してください。
@@ -270,7 +273,7 @@ public class XRUtility : MonoBehaviour {
                 - Pointer Enter: OnEnter
                 - Pointer Exit: OnExit
     1. Utilityスクリプトを追加します。
-        1. 先ほど作成したXRUtility.csをGame.csを追加したGameObjectに追加してください。
+        1. 作成したXRUtility.csをGame.csを追加したGameObjectに追加してください。
         1. **XRUtility (Script)**コンポーネントに**Reticle Pointer**が表示されるので、Main Cameraの直下に配置した、GvrReticlePointerをDrag&Dropしてください。
     1. VR用のイベントを拾うための設定を行います。
         1. HierarchyタブでEvent Systemを削除して、GoogleVRのGvrEventSystem(Prefab)をProjectタブからDrag&Dropして追加してください。
@@ -285,28 +288,29 @@ public class XRUtility : MonoBehaviour {
         ```txt
         [Heirarchy]
             - Main Camera
+                - GvrReticlePointer 注2
             - Directional Light
             - Canvas
                 - Button
                     - Text
                 - Text
             - GameObject
-            - GvrEventSystem 注3
-            - GvrEditorEmulator 注3
+            - GvrEventSystem 注2
+            - GvrEditorEmulator 注2
         ```
-        - ___注3: Prefabとして追加したので、青いアイコンです___
+        - ___注2: Prefabとして追加したので、青いアイコンです___
 
 ## ビルド設定およびXRの有効化
 
-Unityエディタのメニュー→File→Build Settings…と選択し、「Player Settings…」ボタンをクリックする。
+Unityエディタのメニュー→File→Build Settings…と選択し、「Player Settings…」ボタンをクリックしてください。
 
-主な設定事項は下記。
+主な設定事項を以下に記載します。特に記載がない場合はiOS/Android共通です。
 
 ### [必須] Resolution and Presentation
 #### Orientation
 - Default Orientation: Landscape (Left or Right)
 
-### [必須] XR Settings (iOS/Android同じ)
+### [必須] XR Settings
 - Virtual Reality Supported: true
 - Virtual Reality SDKs **(以下の順番は大事。上にある方がアプリ起動時の状態となるため)**
     - None
@@ -314,14 +318,11 @@ Unityエディタのメニュー→File→Build Settings…と選択し、「Pla
 
 ### Other Settings
 
-#### Configuration
-- Api Compatibility Level: .NET 4.x
-
 #### [Android]
 #### Identification
-- Package Name: (よしなに)
-- Version: (よしなに)
-- Bundle Version Code: (よしなに)
+- Package Name: 例) com.miyazakis.samplevr
+- Version: 例) 0.0.1
+- Bundle Version Code: 例) 1
 - Minimum API Level: Android 4.4 'KitKat' (API level 19)
 
 #### Target Architectures 
@@ -329,20 +330,24 @@ Unityエディタのメニュー→File→Build Settings…と選択し、「Pla
 - ARM64: true
 - x86: false
 
+#### Configuration
+- Api Compatibility Level: .NET 4.x
+
 #### [iOS]
 #### Identification
-- Bundle Identifier: (よしなに)
-- Version: (よしなに)
-- Build: (よしなに)
+- Bundle Identifier: 例) com.miyazakis.samplevr
+- Version: 例) 0.0.1
+- Build: 例) 1
 
 #### Configuration
+- Api Compatibility Level: .NET 4.x
 - Architecture: ARM64
 
 ## ビルド
 
-各Pratform(Android or iOS)向けにビルドを行います。
+各Pratform(iOS or Android)向けにビルドを行います。
 
-iOSの場合、Xcodeプロジェクトへのエクスポートになるので、エクスポートした後にXcodeでプロジェクトを開いてビルドしてください。ここではその手順は省きます。
+iOSの場合Xcodeプロジェクトへのエクスポートになるので、エクスポートした後にXcodeでプロジェクトを開いてビルドしてください。
 
 1. Unityエディタのメニュー→File→Build Settings…と選択してください。
     - ビルドしたいPlatformが選択されていない場合は、Switch Pratformを行ってください。
@@ -354,5 +359,7 @@ iOSの場合、Xcodeプロジェクトへのエクスポートになるので、
 長くなった上に、文字が多くて分かりづらいですが、下記リポジトリに作成したプロジェクトをコミットしていますので、参考にしてください。
 
 https://github.com/sear-azazel/SampleVR.git
+
+※ Androidの動作確認は行いましたが、iOSはまだ行っていないため、確認が取れたら追記します。
 
 以上
