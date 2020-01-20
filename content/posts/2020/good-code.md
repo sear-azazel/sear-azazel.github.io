@@ -7,7 +7,7 @@ type:
 - post 
 - posts
 title: "てげ良いコード書きたい"
-draft: false
+draft: true
 tags: ["勉強会", "コーディング", "備忘録"]
 categories: ["勉強会"]
 description: "てげ良いコード書きたい"
