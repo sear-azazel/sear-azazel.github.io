@@ -1,19 +1,21 @@
 ---
 author:
   name: "az"
-date: 2019-12-20
+date: 2020-01-20
 linktitle: "てげ良いコード書きたい"
 type:
 - post 
 - posts
 title: "てげ良いコード書きたい"
-draft: true
-tags: ["勉強会", "コーディング"]
-categories: ["その他"]
+draft: false
+tags: ["勉強会", "コーディング", "備忘録"]
+categories: ["勉強会"]
 description: "てげ良いコード書きたい"
 ---
 
-発表会に向けたメモ
+[Webナイト宮崎 Vol.8　～てげ良いコード書きたい～](https://tegehoge.connpass.com/event/160183/)のLTに向けたメモ
+
+## メモ
 
 - Git のコミットルール
     - prefix
@@ -66,3 +68,6 @@ description: "てげ良いコード書きたい"
 - リテラルな数字・文字は書かない
     - 共通な定数定義、設定ファイルで定義する
 
+## 備忘
+
+資料が完成したら、スライド系のサービスにアップする
