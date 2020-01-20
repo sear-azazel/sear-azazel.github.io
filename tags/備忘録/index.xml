@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>備忘録 on az</title>
+    <link>https://sear-azazel.github.io/tags/%E5%82%99%E5%BF%98%E9%8C%B2/</link>
+    <description>Recent content in 備忘録 on az</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 20 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sear-azazel.github.io/tags/%E5%82%99%E5%BF%98%E9%8C%B2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>てげ良いコード書きたい</title>
+      <link>https://sear-azazel.github.io/2020/01/20/good-code/</link>
+      <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/01/20/good-code/</guid>
+      <description>Webナイト宮崎 Vol.8　～てげ良いコード書きたい～のLTに向けたメモ
+メモ  Git のコミットルール  prefix  1コミット1機能もしくは1修正  何をしているかの可視化 前の状態に戻したい場合に容易  時間短縮     https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type  feat : 新しい機能 fix : バグフィックス docs : ドキュメントのみ変更 style : コードの意味に影響を与えない変更（空白、フォーマット、セミコロンの欠落など） refactor : バグを修正したり、機能を追加したりしないコード変更 perf : パフォーマンスを向上させるコード変更 test : 既存のテストの欠落または修正の追加 chore : ビルドプロセスやドキュメント作成などの補助ツールやライブラリの変更       コメントは書かない  プロパティ、フィールド、メソッド、クラスの説明は書く  ここで処理の意味を込める コメントと処理の食い違いが発生する可能性をなくす   変数の名前で処理の内容がわかるようにする   1メソッド1行  改修が必要な時、(余計な)処理を割り込みにくくさせる  処理が割り込む場合、別な手段で解決できるはず シーケンシャルな処理が入ると、処理の順番によって結果が変わることが大いにあるためその可能性をつぶす   どうしてもシーケンシャルな処理が必要なときのみ、20行まで  1画面に収まらない場合、スクロールしなければならない  開発時の余計な手間&amp;amp;理解間違いの防止       変数名、関数名は長くなっても意味が分かるようにする  あまり長すぎもダメだけど。。   変数名、関数名は英語を用いる  どうしてもの時だけローマ字   for、foreach、whileはなるべく使わない  LINQを使う   MVVMを活用する  画面とモデルを紐づける  画面から値を取得する/セットするためのプロパティを作成する     IF文をなるべく使わない  LINQで何とかする 三項演算子を用いる IF文のブロックで余計な処理を挟み込まないため   なるべく変数使わない  使う場合は、使い回さない  1変数1代入     グローバル変数定義しない  どこで値が変わるか把握しきれなくなる   役割ごとにクラスを分ける  CommonUtilsとか作らない なんでもここに定義することになり、収拾がつかなくなる   リテラルな数字・文字は書かない  共通な定数定義、設定ファイルで定義する    備忘 資料が完成したら、スライド系のサービスにアップする</description>
+    </item>
+    
+  </channel>
+</rss>
