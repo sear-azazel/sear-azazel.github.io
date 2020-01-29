@@ -2,15 +2,18 @@
 author:
   name: "az"
 date: 2020-01-28 00:00:00
-linktitle: "今日学んだこと - 2020/01/28"
+linktitle: "Flutter: リストをスライドしてアクションを実行するボタンを表示する"
 type:
 - post 
 - posts
-title: "今日学んだこと - 2020/01/28"
+title: "Flutter: リストをスライドしてアクションを実行するボタンを表示する"
 draft: false
 tags: ["学び", "Dart", "Flutter"]
-categories: ["学び"]
-description: "今日学んだこと - 2020/01/28"
+categories: ["Flutter"]
+description: "
+今日学んだこと - 2020/01/28
+Flutter: リストをスライドしてアクションを実行するボタンを表示する
+"
 ---
 
 ### Flutter/Dart

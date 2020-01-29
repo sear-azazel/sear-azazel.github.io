@@ -2,15 +2,19 @@
 author:
   name: "az"
 date: 2020-01-29 00:00:00
-linktitle: "今日学んだこと - 2020/01/29"
+archives: [dateFormat "2020/01" .Date]
+linktitle: "WPF: スクロールバーのダブルクリックを無効にする"
 type:
 - post 
 - posts
-title: "今日学んだこと - 2020/01/29"
+title: "WPF: スクロールバーのダブルクリックを無効にする"
 draft: false
 tags: ["学び", "C#", "WPF"]
-categories: ["学び"]
-description: "今日学んだこと - 2020/01/29"
+categories: ["WPF"]
+description: "
+今日学んだこと - 2020/01/29
+WPF: スクロールバーのダブルクリックを無効にする
+"
 ---
 
 ### WPF/C#
