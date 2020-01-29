@@ -45,6 +45,16 @@ Flutter: リストをスライドしてアクションを実行するボタン�
       (index) {
         return Slidable(
           key: ValueKey('$index'),
+          dismissal: SlidableDismissal(
+            child: SlidableDrawerDismissal(),
+            dismissThresholds: <SlideActionType, double>{
+              // 右dismissal(スワイプ)をキャンセルする(1.0にセットする)
+              SlideActionType.secondary: 1.0
+            },
+            onDismissed: (actionType) async {
+              await _removeSiteContents(index);
+            },
+          ),
           actions: <Widget>[
             IconSlideAction(
               caption: 'Edit',
