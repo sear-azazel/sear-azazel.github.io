@@ -1,8 +1,7 @@
 ---
 author:
   name: "az"
-date: 2020-01-29 00:00:00
-archives: [dateFormat "2020/01" .Date]
+date: 2020-01-29T00:00:00+09:00
 linktitle: "WPF: スクロールバーのダブルクリックを無効にする"
 type:
 - post 
