@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>C# on az</title>
-    <link>https://sear-azazel.github.io/tags/c#/</link>
-    <description>Recent content in C# on az</description>
+    <title>学び on az</title>
+    <link>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</link>
+    <description>Recent content in 学び on az</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0900</lastBuildDate>
     
-	<atom:link href="https://sear-azazel.github.io/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Flutter: FutureBuilderを使って非同期でWidgetを生成する</title>
+      <link>https://sear-azazel.github.io/2020/01/29/learning-29-03/</link>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/01/29/learning-29-03/</guid>
+      <description>Flutter/Dart FutureBuilderを使って非同期でWidgetを生成する Widget getIcon(String url) { return FutureBuilder( future: existSite(url), builder: (BuildContext context, AsyncSnapshot&amp;lt;bool&amp;gt; snapshot) { // 第二引数はfutureの戻りの型  if (snapshot.hasData &amp;amp;&amp;amp; snapshot.data) { return CachedNetworkImage( imageUrl: &amp;#39;http://favicon.st-hatena.com/?url=$url&amp;#39;, placeholder: (context, url) =&amp;gt; Icon(Icons.not_interested), ); } else { return Icon(Icons.not_interested); } }, ); 参考URL https://qiita.com/ysknsn/items/76c6326c74dc9059ff20</description>
+    </item>
+    
+    <item>
+      <title>Flutter: 動的にTextFieldを広げる</title>
+      <link>https://sear-azazel.github.io/2020/01/29/learning-29-02/</link>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/01/29/learning-29-02/</guid>
+      <description>Flutter/Dart 動的にTextFieldを広げる class MultipleLineTextField extends StatelessWidget { @override Widget build(BuildContext context) { return Scrollbar( child: TextField( maxLines: 10, // ここと  minLines: 1, // ここを設定するだけ  ), ); } } 参考URL https://qiita.com/kouT127/items/da258adcb8b0cd9def50</description>
+    </item>
     
     <item>
       <title>WPF: コントロールの下にウィンドウを表示する</title>
@@ -31,6 +49,18 @@ protected override void OnPreviewMouseDoubleClick(MouseButtonEventArgs e) { base
     </item>
     
     <item>
+      <title>Flutter: リストをスライドしてアクションを実行するボタンを表示する</title>
+      <link>https://sear-azazel.github.io/2020/01/28/learning-28-01/</link>
+      <pubDate>Tue, 28 Jan 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/01/28/learning-28-01/</guid>
+      <description>Flutter/Dart リストをスライドしてアクションを実行するボタンを表示する flutter_slidableを利用する
+  pubspec.yamlに記載して、プラグインを追加する
+version: 0.0.1+1 environment: sdk: &amp;#34;&amp;gt;=2.2.0 &amp;lt;3.0.0&amp;#34; dependencies: flutter: sdk: flutter flutter_slidable: ^0.5.4   Widgetを作成する
+return ReorderableListView( children: List.generate( _list_.length, (index) { return Slidable( key: ValueKey(&amp;#39;$index&amp;#39;), dismissal: SlidableDismissal( child: SlidableDrawerDismissal(), dismissThresholds: &amp;lt;SlideActionType, double&amp;gt;{ // 右dismissal(スワイプ)をキャンセルする(1.0にセットする)  SlideActionType.secondary: 1.0 }, onDismissed: (actionType) async { await _removeSiteContents(index); }, ), actions: &amp;lt;Widget&amp;gt;[ IconSlideAction( caption: &amp;#39;Edit&amp;#39;, color: Colors.blue, icon: Icons.edit, onTap: () {}, ), ], secondaryActions: &amp;lt;Widget&amp;gt;[ IconSlideAction( caption: &amp;#39;Delete&amp;#39;, color: Colors.</description>
+    </item>
+    
+    <item>
       <title>WPF: Drag&amp;Dropを実装する</title>
       <link>https://sear-azazel.github.io/2020/01/28/learning-28-02/</link>
       <pubDate>Tue, 28 Jan 2020 00:00:00 +0900</pubDate>
@@ -39,25 +69,6 @@ protected override void OnPreviewMouseDoubleClick(MouseButtonEventArgs e) { base
       <description>WPF/C# Drag&amp;amp;Dropを実装する デザイン
 &amp;lt;Grid&amp;gt; &amp;lt;Grid.RowDefinitions&amp;gt; &amp;lt;RowDefinition&amp;gt;&amp;lt;/RowDefinition&amp;gt; &amp;lt;RowDefinition&amp;gt;&amp;lt;/RowDefinition&amp;gt; &amp;lt;/Grid.RowDefinitions&amp;gt; &amp;lt;Button Grid.Row=&amp;#34;0&amp;#34; x:Name=&amp;#34;x&amp;#34; Height=&amp;#34;24&amp;#34; Width=&amp;#34;100&amp;#34; Content=&amp;#34;X&amp;#34; AllowDrop=&amp;#34;True&amp;#34; PreviewMouseDown=&amp;#34;ButtonPreviewMouseDown&amp;#34; PreviewMouseMove=&amp;#34;ButtonPreviewMouseMove&amp;#34; Drop=&amp;#34;ButtonDrop&amp;#34;/&amp;gt; &amp;lt;Button Grid.Row=&amp;#34;1&amp;#34; x:Name=&amp;#34;y&amp;#34; Height=&amp;#34;24&amp;#34; Width=&amp;#34;100&amp;#34; Content=&amp;#34;Y&amp;#34; AllowDrop=&amp;#34;True&amp;#34; PreviewMouseDown=&amp;#34;ButtonPreviewMouseDown&amp;#34; PreviewMouseMove=&amp;#34;ButtonPreviewMouseMove&amp;#34; Drop=&amp;#34;ButtonDrop&amp;#34;/&amp;gt; &amp;lt;/Grid&amp;gt; ロジック
 private Point startPoint; private const key = &amp;#34;data&amp;#34;; private void ButtonDrop(object sender, DragEventArgs e) { IDataObject dragTarget = e.Data; if (!dragTarget.GetDataPresent(key)) { return; } int data = (int)dragTarget.GetData(key); } private void ButtonPreviewMouseDown(object sender, MouseEventArgs e) { startPoint = e.GetPosition(null); } private void ButtonPreviewMouseMove(object sender, MouseEventArgs e) { if (e.</description>
-    </item>
-    
-    <item>
-      <title>UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する</title>
-      <link>https://sear-azazel.github.io/2019/12/20/unity-develop-xr/</link>
-      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://sear-azazel.github.io/2019/12/20/unity-develop-xr/</guid>
-      <description>宮崎 IT 関連勉強会 Advent Calendar 2019 23日目の記事です。
-UnityではVRは簡単に実装できますが、VRとノーマルモードの切り替えがちょっとややこしいです。アプリ起動時はノーマルモードで、ゲーム開始後はVRモードにしたいという場面はあると思います。もしくは、VRがメインだけど、ノーマルモードでも遊べますよ、といったケースですね。
-また、VRモードではタッチでの操作が出来ないため、視線イベントが必要となります。 ボタンを3秒見つめたら、ボタンタッチとするという仕組みです。コントローラが有れば、そういったことも必要ではなくなるのですが、ユーザが必ずしもコントローラを持っているとは限りません。
-そして、厄介なことにUnityやGoogleVRのバージョンが上がるたびに仕様が変わっていくので、 備忘録の意味も込めて現時点のバージョンの実装方法を記載します。
-説明で用いるプロジェクトを下記リポジトリに用意しているので、良ければ参考にしてください。
-https://github.com/sear-azazel/SampleVR.git
-前置き Google VR SDK for Unityのgithubリポジトリは現在アーカイブされています。
-Cardboardのソフトウェア関連技術がオープンソースとなり、またDaydreamの販売終了とニュースもありますが、Googleが完全にVR手放したとしても、ソースコードは生き続けるようです。
-目標 UnityでVRを実装し、iOS or Androidに出力するまでを行います。
-また、アプリ起動時はノーマルモードの状態で、ゲーム開始時にVRモードになるように組み込みたいと思います。
-前提条件 必要なもの  スマートフォン  iOS or Android   開発環境/ツール(Unity以外)  Android SDK  Android NDKもあれば良い(必須ではない)   Xcode  iPhone用にビルドする場合は必須   Visual Studio (for Mac)  コーディングで利用する Unityと併せてインストールできる(はず) コードエディタは何でも良いが、利便性を考えるとVisual Studio一択 おすすめはVisual Studio 2019 (Windows)  以前のバージョンに比べて3倍速い     (補足)Cloud Build を契約すると、ビルドが自動化できて便利  https://unity3d.</description>
     </item>
     
   </channel>

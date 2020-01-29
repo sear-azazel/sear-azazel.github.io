@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://sear-azazel.github.io/2019/12/20/unity-develop-xr/" />
+  <link rel="next" href="https://sear-azazel.github.io/2020/01/28/learning-28-01/" />
+  <link rel="canonical" href="https://sear-azazel.github.io/2020/01/28/learning-28-02/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           WPF: Drag&amp;Dropを実装する | az
+       
+  </title>
+  <meta name="title" content="WPF: Drag&amp;Dropを実装する | az">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="WPF: Drag&amp;Dropを実装する"/>
+<meta name="twitter:description" content=" 今日学んだこと - 2020/01/28 WPF: Drag&amp;Dropを実装する "/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "WPF: Drag\x26Dropを実装する",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/sear-azazel.github.io\/2020\/01\/28\/learning-28-02\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/sear-azazel.github.io\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "posts",
+  "keywords": "学び, C#, WPF",
+  "wordcount":  121 ,
+  "url": "https:\/\/sear-azazel.github.io\/2020\/01\/28\/learning-28-02\/",
+  "datePublished": "2020-01-28T00:00:00\x2b09:00",
+  "dateModified": "2020-01-28T00:00:00\x2b09:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "az",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/sear-azazel.github.io\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "map[name:az]"
+  },
+  "description": " 今日学んだこと - 2020\/01\/28 WPF: Drag\x26Dropを実装する "
+}
+</script>
+</head>
+
+  
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://sear-azazel.github.io/">az</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://sear-azazel.github.io/">az</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">WPF: Drag&amp;Dropを実装する</h1>
+        <div class="post-meta">
+              <a href="https://sear-azazel.github.io/" rel="author">map[name:az]</a>  ♥ 
+                <span class="post-time">
+                     <time datetime=2020-01-28 >28 January 2020</time>
+                </span>
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://sear-azazel.github.io/categories/wpf/"> WPF </a>
+                        
+                </span>
+                <i class="iconfont icon-timer"></i>
+                1 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h1 id="wpfc">WPF/C#</h1>
+<h2 id="dragdrop">Drag&amp;Dropを実装する</h2>
+<p>デザイン</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Grid</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;Grid.RowDefinitions</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;RowDefinition</span><span style="color:#f92672">&gt;</span><span style="color:#f92672">&lt;/RowDefinition&gt;</span>
+        <span style="color:#f92672">&lt;RowDefinition</span><span style="color:#f92672">&gt;</span><span style="color:#f92672">&lt;/RowDefinition&gt;</span>
+    <span style="color:#f92672">&lt;/Grid.RowDefinitions&gt;</span>
+    <span style="color:#f92672">&lt;Button</span> 
+        <span style="color:#a6e22e">Grid.Row=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">x:Name=</span><span style="color:#e6db74">&#34;x&#34;</span> <span style="color:#a6e22e">Height=</span><span style="color:#e6db74">&#34;24&#34;</span> <span style="color:#a6e22e">Width=</span><span style="color:#e6db74">&#34;100&#34;</span> <span style="color:#a6e22e">Content=</span><span style="color:#e6db74">&#34;X&#34;</span> <span style="color:#a6e22e">AllowDrop=</span><span style="color:#e6db74">&#34;True&#34;</span>
+        <span style="color:#a6e22e">PreviewMouseDown=</span><span style="color:#e6db74">&#34;ButtonPreviewMouseDown&#34;</span>
+        <span style="color:#a6e22e">PreviewMouseMove=</span><span style="color:#e6db74">&#34;ButtonPreviewMouseMove&#34;</span>
+        <span style="color:#a6e22e">Drop=</span><span style="color:#e6db74">&#34;ButtonDrop&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;Button</span>
+        <span style="color:#a6e22e">Grid.Row=</span><span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#a6e22e">x:Name=</span><span style="color:#e6db74">&#34;y&#34;</span> <span style="color:#a6e22e">Height=</span><span style="color:#e6db74">&#34;24&#34;</span> <span style="color:#a6e22e">Width=</span><span style="color:#e6db74">&#34;100&#34;</span> <span style="color:#a6e22e">Content=</span><span style="color:#e6db74">&#34;Y&#34;</span> <span style="color:#a6e22e">AllowDrop=</span><span style="color:#e6db74">&#34;True&#34;</span>
+        <span style="color:#a6e22e">PreviewMouseDown=</span><span style="color:#e6db74">&#34;ButtonPreviewMouseDown&#34;</span>
+        <span style="color:#a6e22e">PreviewMouseMove=</span><span style="color:#e6db74">&#34;ButtonPreviewMouseMove&#34;</span>
+        <span style="color:#a6e22e">Drop=</span><span style="color:#e6db74">&#34;ButtonDrop&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/Grid&gt;</span>
+</code></pre></div><p>ロジック</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#66d9ef">private</span> Point startPoint;
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">const</span> key = <span style="color:#e6db74">&#34;data&#34;</span>;
+
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> ButtonDrop(<span style="color:#66d9ef">object</span> sender, DragEventArgs e)
+{
+    IDataObject dragTarget = e.Data;
+
+    <span style="color:#66d9ef">if</span> (!dragTarget.GetDataPresent(key)) { <span style="color:#66d9ef">return</span>; }
+
+    <span style="color:#66d9ef">int</span> data = (<span style="color:#66d9ef">int</span>)dragTarget.GetData(key);
+}
+
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> ButtonPreviewMouseDown(<span style="color:#66d9ef">object</span> sender, MouseEventArgs e)
+{
+    startPoint = e.GetPosition(<span style="color:#66d9ef">null</span>);
+}
+
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> ButtonPreviewMouseMove(<span style="color:#66d9ef">object</span> sender, MouseEventArgs e)
+{
+    <span style="color:#66d9ef">if</span> (e.LeftButton == MouseButtonState.Released) { <span style="color:#66d9ef">return</span>; }
+
+    Point mousePos = e.GetPosition(<span style="color:#66d9ef">null</span>);
+    Vector diff = startPoint - mousePos;
+
+    <span style="color:#66d9ef">if</span> (Math.Abs(diff.X) &gt; SystemParameters.MinimumHorizontalDragDistance ||
+        Math.Abs(diff.Y) &gt; SystemParameters.MinimumVerticalDragDistance)
+    {
+        DataObject dataObject = <span style="color:#66d9ef">new</span> DataObject();
+        <span style="color:#66d9ef">int</span> data = <span style="color:#ae81ff">1</span>;
+        dataObject.SetData(key, data);
+
+        DragDrop.DoDragDrop(sender <span style="color:#66d9ef">as</span> Button, dataObject, DragDropEffects.Move);
+    }
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>:</span>
+                <span>az </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>:</span>
+                   <span>121</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>:</span>
+                <span>
+
+      
+        <a href="//twitter.com/share?url=https%3a%2f%2fsear-azazel.github.io%2f2020%2f01%2f28%2flearning-28-02%2f&amp;text=WPF%3a%20Drag%26Drop%e3%82%92%e5%ae%9f%e8%a3%85%e3%81%99%e3%82%8b&amp;via=az_sear" target="_blank" title="Share on Twitter">
+          <i class="iconfont icon-twitter"></i>
+        </a>
+        
+      
+      
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsear-azazel.github.io%2f2020%2f01%2f28%2flearning-28-02%2f" target="_blank" title="Share on Facebook">
+          <i class="iconfont icon-facebook"></i>
+        </a>
+        
+      
+      
+      
+      
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-icon-tag"></i>: 
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/">
+                    #学び</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/c/">
+                    #C#</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/wpf/">
+                    #WPF</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();"></a></span> · 
+                <span><a href="https://sear-azazel.github.io/"></a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://sear-azazel.github.io/2019/12/20/unity-develop-xr/" class="prev" rel="prev" title="UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する"><i class="iconfont icon-dajiantou"></i>&nbsp;UnityでVRアプリを作成しVR/ノーマルの切り替えや視線イベントを実装する</a>
+         
+        
+        <a href="https://sear-azazel.github.io/2020/01/28/learning-28-01/" class="next" rel="next" title="Flutter: リストをスライドしてアクションを実行するボタンを表示する">Flutter: リストをスライドしてアクションを実行するボタンを表示する&nbsp;<i class="iconfont icon-xiaojiantou"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+          
+
+ 
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2012 - 2020</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://sear-azazel.github.io/">az</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>

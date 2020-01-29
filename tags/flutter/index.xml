@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flutter on az</title>
+    <link>https://sear-azazel.github.io/tags/flutter/</link>
+    <description>Recent content in Flutter on az</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://sear-azazel.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Flutter: FutureBuilderを使って非同期でWidgetを生成する</title>
+      <link>https://sear-azazel.github.io/2020/01/29/learning-29-03/</link>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/01/29/learning-29-03/</guid>
+      <description>Flutter/Dart FutureBuilderを使って非同期でWidgetを生成する Widget getIcon(String url) { return FutureBuilder( future: existSite(url), builder: (BuildContext context, AsyncSnapshot&amp;lt;bool&amp;gt; snapshot) { // 第二引数はfutureの戻りの型  if (snapshot.hasData &amp;amp;&amp;amp; snapshot.data) { return CachedNetworkImage( imageUrl: &amp;#39;http://favicon.st-hatena.com/?url=$url&amp;#39;, placeholder: (context, url) =&amp;gt; Icon(Icons.not_interested), ); } else { return Icon(Icons.not_interested); } }, ); 参考URL https://qiita.com/ysknsn/items/76c6326c74dc9059ff20</description>
+    </item>
+    
+    <item>
+      <title>Flutter: 動的にTextFieldを広げる</title>
+      <link>https://sear-azazel.github.io/2020/01/29/learning-29-02/</link>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/01/29/learning-29-02/</guid>
+      <description>Flutter/Dart 動的にTextFieldを広げる class MultipleLineTextField extends StatelessWidget { @override Widget build(BuildContext context) { return Scrollbar( child: TextField( maxLines: 10, // ここと  minLines: 1, // ここを設定するだけ  ), ); } } 参考URL https://qiita.com/kouT127/items/da258adcb8b0cd9def50</description>
+    </item>
+    
+    <item>
+      <title>Flutter: リストをスライドしてアクションを実行するボタンを表示する</title>
+      <link>https://sear-azazel.github.io/2020/01/28/learning-28-01/</link>
+      <pubDate>Tue, 28 Jan 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/01/28/learning-28-01/</guid>
+      <description>Flutter/Dart リストをスライドしてアクションを実行するボタンを表示する flutter_slidableを利用する
+  pubspec.yamlに記載して、プラグインを追加する
+version: 0.0.1+1 environment: sdk: &amp;#34;&amp;gt;=2.2.0 &amp;lt;3.0.0&amp;#34; dependencies: flutter: sdk: flutter flutter_slidable: ^0.5.4   Widgetを作成する
+return ReorderableListView( children: List.generate( _list_.length, (index) { return Slidable( key: ValueKey(&amp;#39;$index&amp;#39;), dismissal: SlidableDismissal( child: SlidableDrawerDismissal(), dismissThresholds: &amp;lt;SlideActionType, double&amp;gt;{ // 右dismissal(スワイプ)をキャンセルする(1.0にセットする)  SlideActionType.secondary: 1.0 }, onDismissed: (actionType) async { await _removeSiteContents(index); }, ), actions: &amp;lt;Widget&amp;gt;[ IconSlideAction( caption: &amp;#39;Edit&amp;#39;, color: Colors.blue, icon: Icons.edit, onTap: () {}, ), ], secondaryActions: &amp;lt;Widget&amp;gt;[ IconSlideAction( caption: &amp;#39;Delete&amp;#39;, color: Colors.</description>
+    </item>
+    
+  </channel>
+</rss>

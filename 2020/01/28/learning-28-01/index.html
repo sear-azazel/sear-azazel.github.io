@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://sear-azazel.github.io/2020/01/28/learning-28-02/" />
+  <link rel="next" href="https://sear-azazel.github.io/2020/01/29/learning-29-01/" />
+  <link rel="canonical" href="https://sear-azazel.github.io/2020/01/28/learning-28-01/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Flutter: リストをスライドしてアクションを実行するボタンを表示する | az
+       
+  </title>
+  <meta name="title" content="Flutter: リストをスライドしてアクションを実行するボタンを表示する | az">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Flutter: リストをスライドしてアクションを実行するボタンを表示する"/>
+<meta name="twitter:description" content=" 今日学んだこと - 2020/01/28 Flutter: リストをスライドしてアクションを実行するボタンを表示する "/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Flutter: リストをスライドしてアクションを実行するボタンを表示する",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/sear-azazel.github.io\/2020\/01\/28\/learning-28-01\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/sear-azazel.github.io\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "posts",
+  "keywords": "学び, Dart, Flutter",
+  "wordcount":  144 ,
+  "url": "https:\/\/sear-azazel.github.io\/2020\/01\/28\/learning-28-01\/",
+  "datePublished": "2020-01-28T00:00:00\x2b09:00",
+  "dateModified": "2020-01-28T00:00:00\x2b09:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "az",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/sear-azazel.github.io\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "map[name:az]"
+  },
+  "description": " 今日学んだこと - 2020\/01\/28 Flutter: リストをスライドしてアクションを実行するボタンを表示する "
+}
+</script>
+</head>
+
+  
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://sear-azazel.github.io/">az</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://sear-azazel.github.io/">az</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">Flutter: リストをスライドしてアクションを実行するボタンを表示する</h1>
+        <div class="post-meta">
+              <a href="https://sear-azazel.github.io/" rel="author">map[name:az]</a>  ♥ 
+                <span class="post-time">
+                     <time datetime=2020-01-28 >28 January 2020</time>
+                </span>
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://sear-azazel.github.io/categories/flutter/"> Flutter </a>
+                        
+                </span>
+                <i class="iconfont icon-timer"></i>
+                1 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h1 id="flutterdart">Flutter/Dart</h1>
+<h2 id="heading">リストをスライドしてアクションを実行するボタンを表示する</h2>
+<p><a href="https://pub.dev/packages/flutter_slidable">flutter_slidable</a>を利用する</p>
+<ul>
+<li>
+<p>pubspec.yamlに記載して、プラグインを追加する</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">version: <span style="color:#ae81ff">0.0</span><span style="color:#ae81ff">.1</span><span style="color:#ae81ff">+1</span>
+
+environment:
+  sdk: <span style="color:#e6db74">&#34;&gt;=2.2.0 &lt;3.0.0&#34;</span>
+
+  dependencies:
+    flutter:
+      sdk: flutter
+  flutter_slidable: ^<span style="color:#ae81ff">0.5</span><span style="color:#ae81ff">.4</span>
+</code></pre></div></li>
+<li>
+<p>Widgetを作成する</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dart" data-lang="Dart"><span style="color:#66d9ef">return</span> ReorderableListView(
+  children: List.generate(
+    _list_.length,
+    (index) {
+      <span style="color:#66d9ef">return</span> Slidable(
+        key: ValueKey(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">$</span>index<span style="color:#e6db74">&#39;</span>),
+        dismissal: SlidableDismissal(
+          child: SlidableDrawerDismissal(),
+          dismissThresholds: <span style="color:#f92672">&lt;</span>SlideActionType, <span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span>{
+            <span style="color:#75715e">// 右dismissal(スワイプ)をキャンセルする(1.0にセットする)
+</span><span style="color:#75715e"></span>            SlideActionType.secondary: <span style="color:#ae81ff">1.0</span>
+          },
+          onDismissed: (actionType) <span style="color:#66d9ef">async</span> {
+            <span style="color:#66d9ef">await</span> _removeSiteContents(index);
+          },
+        ),
+        actions: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+          IconSlideAction(
+            caption: <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Edit</span><span style="color:#e6db74">&#39;</span>,
+            color: Colors.blue,
+            icon: Icons.edit,
+            onTap: () {},
+          ),
+        ],
+        secondaryActions: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+          IconSlideAction(
+            caption: <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Delete</span><span style="color:#e6db74">&#39;</span>,
+            color: Colors.red,
+            icon: Icons.delete,
+            onTap: () <span style="color:#66d9ef">async</span> <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">await</span> _removeSiteContents(index),
+          )
+        ],
+        child: Container(),
+        actionPane: SlidableDrawerActionPane(),
+      );
+    },
+  ),
+);
+</code></pre></div></li>
+</ul>
+<h3 id="heading1">備考</h3>
+<p>Dismissibleと似ているが、Dismissibleはスライドして要素削除</p>
+<p>Dismissibleの場合</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dart" data-lang="Dart"><span style="color:#66d9ef">return</span> ReorderableListView(
+  children: List.generate(
+    _list_.length,
+    (index) {
+      <span style="color:#66d9ef">return</span> Dismissible(
+        key: ValueKey(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">$</span>index<span style="color:#e6db74">&#39;</span>),
+        background: Container(
+          color: Theme.of(context).errorColor,
+          alignment: Alignment.centerLeft,
+          padding: <span style="color:#66d9ef">const</span> EdgeInsets.all(<span style="color:#ae81ff">16.0</span>),
+          child: <span style="color:#66d9ef">const</span> Icon(
+            Icons.restore_from_trash,
+          ),
+        ),
+        secondaryBackground: Container(
+          color: Theme.of(context).errorColor,
+          alignment: Alignment.centerRight,
+          padding: <span style="color:#66d9ef">const</span> EdgeInsets.all(<span style="color:#ae81ff">16.0</span>),
+          child: Icon(Icons.restore_from_trash),
+        ),
+        onDismissed: (direction) {
+          <span style="color:#75715e">// directionに応じて処理を変える
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// 右スワイプか左スワイプ
+</span><span style="color:#75715e"></span>        },
+        child: Container(),
+      );
+    },
+  ),
+);
+</code></pre></div><h3 id="url">参考URL</h3>
+<p><a href="https://webbibouroku.com/Blog/Article/flutter-list-item-delete">https://webbibouroku.com/Blog/Article/flutter-list-item-delete</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>:</span>
+                <span>az </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>:</span>
+                   <span>144</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>:</span>
+                <span>
+
+      
+        <a href="//twitter.com/share?url=https%3a%2f%2fsear-azazel.github.io%2f2020%2f01%2f28%2flearning-28-01%2f&amp;text=Flutter%3a%20%e3%83%aa%e3%82%b9%e3%83%88%e3%82%92%e3%82%b9%e3%83%a9%e3%82%a4%e3%83%89%e3%81%97%e3%81%a6%e3%82%a2%e3%82%af%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%83%9c%e3%82%bf%e3%83%b3%e3%82%92%e8%a1%a8%e7%a4%ba%e3%81%99%e3%82%8b&amp;via=az_sear" target="_blank" title="Share on Twitter">
+          <i class="iconfont icon-twitter"></i>
+        </a>
+        
+      
+      
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsear-azazel.github.io%2f2020%2f01%2f28%2flearning-28-01%2f" target="_blank" title="Share on Facebook">
+          <i class="iconfont icon-facebook"></i>
+        </a>
+        
+      
+      
+      
+      
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-icon-tag"></i>: 
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/">
+                    #学び</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/dart/">
+                    #Dart</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/flutter/">
+                    #Flutter</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();"></a></span> · 
+                <span><a href="https://sear-azazel.github.io/"></a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://sear-azazel.github.io/2020/01/28/learning-28-02/" class="prev" rel="prev" title="WPF: Drag&amp;Dropを実装する"><i class="iconfont icon-dajiantou"></i>&nbsp;WPF: Drag&amp;Dropを実装する</a>
+         
+        
+        <a href="https://sear-azazel.github.io/2020/01/29/learning-29-01/" class="next" rel="next" title="WPF: スクロールバーのダブルクリックを無効にする">WPF: スクロールバーのダブルクリックを無効にする&nbsp;<i class="iconfont icon-xiaojiantou"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+          
+
+ 
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2012 - 2020</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://sear-azazel.github.io/">az</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>
