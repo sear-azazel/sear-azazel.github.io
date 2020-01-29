@@ -16,9 +16,9 @@ Flutter: リストをスライドしてアクションを実行するボタン�
 "
 ---
 
-### Flutter/Dart
+# Flutter/Dart
 
-#### リストをスライドしてアクションを実行するボタンを表示する
+## リストをスライドしてアクションを実行するボタンを表示する
 
 [flutter_slidable](https://pub.dev/packages/flutter_slidable)を利用する
 
@@ -69,7 +69,7 @@ Flutter: リストをスライドしてアクションを実行するボタン�
   );
   ```
 
-##### 備考
+### 備考
 Dismissibleと似ているが、Dismissibleはスライドして要素削除
 
 Dismissibleの場合
@@ -77,7 +77,7 @@ Dismissibleの場合
 ```Dart
 return ReorderableListView(
   children: List.generate(
-    _siteList.length,
+    _list_.length,
     (index) {
       return Dismissible(
         key: ValueKey('$index'),
@@ -95,7 +95,10 @@ return ReorderableListView(
           padding: const EdgeInsets.all(16.0),
           child: Icon(Icons.restore_from_trash),
         ),
-        onDismissed: (direction) {},
+        onDismissed: (direction) {
+          // directionに応じて処理を変える
+          // 右スワイプか左スワイプ
+        },
         child: Container(),
       );
     },
@@ -103,5 +106,5 @@ return ReorderableListView(
 );
 ```
 
-##### 参考URL
+### 参考URL
 https://webbibouroku.com/Blog/Article/flutter-list-item-delete

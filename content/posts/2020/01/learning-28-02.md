@@ -16,9 +16,9 @@ WPF: Drag&Dropを実装する
 "
 ---
 
-### WPF/C#
+# WPF/C#
 
-#### Drag&Dropを実装する
+## Drag&Dropを実装する
 
 デザイン
 
