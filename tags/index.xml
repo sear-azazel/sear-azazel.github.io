@@ -6,10 +6,37 @@
     <description>Recent content in Tags on az</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 03 Feb 2020 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://sear-azazel.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dart</title>
+      <link>https://sear-azazel.github.io/tags/dart/</link>
+      <pubDate>Mon, 03 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/tags/dart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Flutter</title>
+      <link>https://sear-azazel.github.io/tags/flutter/</link>
+      <pubDate>Mon, 03 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/tags/flutter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>学び</title>
+      <link>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</link>
+      <pubDate>Mon, 03 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>C#</title>
@@ -21,38 +48,11 @@
     </item>
     
     <item>
-      <title>Dart</title>
-      <link>https://sear-azazel.github.io/tags/dart/</link>
-      <pubDate>Wed, 29 Jan 2020 00:00:00 +0900</pubDate>
-      
-      <guid>https://sear-azazel.github.io/tags/dart/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Flutter</title>
-      <link>https://sear-azazel.github.io/tags/flutter/</link>
-      <pubDate>Wed, 29 Jan 2020 00:00:00 +0900</pubDate>
-      
-      <guid>https://sear-azazel.github.io/tags/flutter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>WPF</title>
       <link>https://sear-azazel.github.io/tags/wpf/</link>
       <pubDate>Wed, 29 Jan 2020 00:00:00 +0900</pubDate>
       
       <guid>https://sear-azazel.github.io/tags/wpf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>学び</title>
-      <link>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</link>
-      <pubDate>Wed, 29 Jan 2020 00:00:00 +0900</pubDate>
-      
-      <guid>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</guid>
       <description></description>
     </item>
     

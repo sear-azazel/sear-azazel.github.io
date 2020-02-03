@@ -6,10 +6,20 @@
     <description>Recent content in Flutter on az</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 03 Feb 2020 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://sear-azazel.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Flutter: 静的解析を行う</title>
+      <link>https://sear-azazel.github.io/2020/02/03/learning-03-01/</link>
+      <pubDate>Mon, 03 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/02/03/learning-03-01/</guid>
+      <description>Flutter/Dart 静的解析を行う analysis_options.yaml をプロジェクト直下に配置して静的解析を行う
+include: package:pedantic_mono/analysis_options.yaml analyzer: strong-mode: implicit-casts: false implicit-dynamic: false linter: rules: - avoid_types_on_closure_parameters - avoid_void_async - await_only_futures - camel_case_types - cancel_subscriptions - close_sinks - constant_identifier_names - control_flow_in_finally - empty_statements - hash_and_equals - implementation_imports - non_constant_identifier_names - package_api_docs - package_names - package_prefixed_library_names - test_types_in_equals - throw_in_finally - unnecessary_brace_in_string_interps - unnecessary_getters_setters - unnecessary_new - unnecessary_statements ルールの説明  avoid_types_on_closure_parameters  関数式パラメーターの型に注釈を付けることは、通常、パラメーター型がコンテキストからほとんど常に推論され、練習が冗長になるため、不要です。 https://dart-lang.github.io/linter/lints/avoid_types_on_closure_parameters.html   avoid_void_async  値を返さない非同期メソッドまたは関数を宣言するときは、単にvoidではなくFutureを返すことを宣言します。 https://dart-lang.github.io/linter/lints/avoid_void_async.html   await_only_futures  Futureで返すときは、Future.</description>
+    </item>
     
     <item>
       <title>Flutter: FutureBuilderを使って非同期でWidgetを生成する</title>

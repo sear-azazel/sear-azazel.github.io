@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://sear-azazel.github.io/2020/01/29/learning-29-03/" />
+  
+  <link rel="canonical" href="https://sear-azazel.github.io/2020/02/03/learning-03-01/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Flutter: 静的解析を行う | az
+       
+  </title>
+  <meta name="title" content="Flutter: 静的解析を行う | az">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Flutter: 静的解析を行う"/>
+<meta name="twitter:description" content=" 今日学んだこと - 2020/02/03 Flutter: 静的解析を行う "/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Flutter: 静的解析を行う",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/sear-azazel.github.io\/2020\/02\/03\/learning-03-01\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/sear-azazel.github.io\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "posts",
+  "keywords": "学び, Dart, Flutter",
+  "wordcount":  136 ,
+  "url": "https:\/\/sear-azazel.github.io\/2020\/02\/03\/learning-03-01\/",
+  "datePublished": "2020-02-03T00:00:00\x2b09:00",
+  "dateModified": "2020-02-03T00:00:00\x2b09:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "az",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/sear-azazel.github.io\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "map[name:az]"
+  },
+  "description": " 今日学んだこと - 2020\/02\/03 Flutter: 静的解析を行う "
+}
+</script>
+</head>
+
+  
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://sear-azazel.github.io/">az</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://sear-azazel.github.io/">az</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">Flutter: 静的解析を行う</h1>
+        <div class="post-meta">
+              <a href="https://sear-azazel.github.io/" rel="author">map[name:az]</a>  ♥ 
+                <span class="post-time">
+                     <time datetime=2020-02-03 >3 February 2020</time>
+                </span>
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://sear-azazel.github.io/categories/flutter/"> Flutter </a>
+                        
+                </span>
+                <i class="iconfont icon-timer"></i>
+                1 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h1 id="flutterdart">Flutter/Dart</h1>
+<h2 id="heading">静的解析を行う</h2>
+<p>analysis_options.yaml をプロジェクト直下に配置して静的解析を行う</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">include: package:pedantic_mono/analysis_options.yaml
+
+analyzer:
+  strong-mode:
+    implicit-casts: <span style="color:#66d9ef">false</span>
+    implicit-dynamic: <span style="color:#66d9ef">false</span>
+
+linter:
+  rules:
+    - avoid_types_on_closure_parameters 
+    - avoid_void_async
+    - await_only_futures
+    - camel_case_types
+    - cancel_subscriptions
+    - close_sinks
+    - constant_identifier_names
+    - control_flow_in_finally
+    - empty_statements
+    - hash_and_equals
+    - implementation_imports
+    - non_constant_identifier_names
+    - package_api_docs
+    - package_names
+    - package_prefixed_library_names
+    - test_types_in_equals
+    - throw_in_finally
+    - unnecessary_brace_in_string_interps
+    - unnecessary_getters_setters
+    - unnecessary_new
+    - unnecessary_statements
+</code></pre></div><h3 id="heading1">ルールの説明</h3>
+<ul>
+<li>avoid_types_on_closure_parameters
+<ul>
+<li>関数式パラメーターの型に注釈を付けることは、通常、パラメーター型がコンテキストからほとんど常に推論され、練習が冗長になるため、不要です。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/avoid_types_on_closure_parameters.html">https://dart-lang.github.io/linter/lints/avoid_types_on_closure_parameters.html</a></li>
+</ul>
+</li>
+<li>avoid_void_async
+<ul>
+<li>値を返さない非同期メソッドまたは関数を宣言するときは、単にvoidではなくFutureを返すことを宣言します。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/avoid_void_async.html">https://dart-lang.github.io/linter/lints/avoid_void_async.html</a></li>
+</ul>
+</li>
+<li>await_only_futures
+<ul>
+<li>Futureで返すときは、Future.value(value)を用いる。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/await_only_futures.html">https://dart-lang.github.io/linter/lints/await_only_futures.html</a></li>
+</ul>
+</li>
+<li>camel_case_types
+<ul>
+<li>クラスとtypedefは、各単語（最初の単語を含む）の最初の文字を大文字にし、区切り文字を使用しないでください。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/camel_case_types.html">https://dart-lang.github.io/linter/lints/camel_case_types.html</a></li>
+</ul>
+</li>
+<li>cancel_subscriptions
+<ul>
+<li>StreamSubscriptionのインスタンスをキャンセルすると、メモリリークと予期しない動作が防止されます。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/cancel_subscriptions.html">https://dart-lang.github.io/linter/lints/cancel_subscriptions.html</a></li>
+</ul>
+</li>
+<li>close_sinks
+<ul>
+<li>Sinkのインスタンスを閉じると、メモリリークと予期しない動作が防止されます。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/close_sinks.html">https://dart-lang.github.io/linter/lints/close_sinks.html</a></li>
+</ul>
+</li>
+<li>constant_identifier_names
+<ul>
+<li>新しいコードでは、列挙値を含む定数変数にlowerCamelCaseを使用します。 定数にALL_CAPS_WITH_UNDERSCORESを使用する既存のコードでは、一貫性を保つために引き続きすべての大文字を使用できます。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/constant_identifier_names.html">https://dart-lang.github.io/linter/lints/constant_identifier_names.html</a></li>
+</ul>
+</li>
+<li>control_flow_in_finally
+<ul>
+<li>finallyブロックで制御フローを使用すると、デバッグが困難な予期しない動作が必ず発生します。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/control_flow_in_finally.html">https://dart-lang.github.io/linter/lints/control_flow_in_finally.html</a></li>
+</ul>
+</li>
+<li>empty_statements
+<ul>
+<li>空の文はほとんど常にバグを示します。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/empty_statements.html">https://dart-lang.github.io/linter/lints/empty_statements.html</a></li>
+</ul>
+</li>
+<li>hash_and_equals
+<ul>
+<li>DartのすべてのオブジェクトにはhashCodeがあります。 ==演算子とオブジェクトのhashCodeプロパティの両方は、一般的なハッシュマップの実装が適切に機能するために一貫している必要があります。したがって、==をオーバーライドする場合、一貫性を維持するためにhashCodeもオーバーライドする必要があります。同様に、hashCodeがオーバーライドされる場合は、==もオーバーライドする必要があります。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/hash_and_equals.html">https://dart-lang.github.io/linter/lints/hash_and_equals.html</a></li>
+</ul>
+</li>
+<li>implementation_imports
+<ul>
+<li>lib内のライブラリは公開されています。他のパッケージは自由にインポートできます。しかし、パッケージのコードの多くは、パッケージ自体によってのみインポートおよび使用される内部実装ライブラリです。それらはsrcと呼ばれるlibのサブディレクトリの中に入ります。整理に役立つ場合は、そこにサブディレクトリを作成できます。 同じパッケージ内の他のDartコード内からlib / srcにあるライブラリ（lib内の他のライブラリ、bin内のスクリプト、テストなど）を自由にインポートできますが、別のパッケージのlib / srcディレクトリからインポートしないでください。これらのファイルはパッケージのパブリックAPIの一部ではなく、コードを壊す可能性のある方法で変更される可能性があります。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/implementation_imports.html">https://dart-lang.github.io/linter/lints/implementation_imports.html</a></li>
+</ul>
+</li>
+<li>non_constant_identifier_names
+<ul>
+<li>クラスメンバ、トップレベルの定義、変数、パラメータ、名前付きパラメータ、および名前付きコンストラクタは、最初の単語を除く各単語の最初の文字を大文字にし、セパレータを使用しないでください。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/non_constant_identifier_names.html">https://dart-lang.github.io/linter/lints/non_constant_identifier_names.html</a></li>
+</ul>
+</li>
+<li>package_api_docs
+<ul>
+<li>pubパッケージレイアウトドキュメントで説明されているように、パブリックAPIはパッケージのlibフォルダー内のすべてから構成され、lib / srcの実装ファイルを除いて、エクスポートディレクティブで明示的にエクスポートされた要素を追加します。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/package_api_docs.html">https://dart-lang.github.io/linter/lints/package_api_docs.html</a></li>
+</ul>
+</li>
+<li>package_names
+<ul>
+<li>パッケージ名はすべて小文字にする必要があり、単語を区切る下線はjust_like_thisです。基本的なラテン文字とアラビア数字のみを使用してください：[a-z0-9_]。また、名前が有効なDart識別子であることを確認してください-それは数字で始まっておらず、予約語ではありません。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/package_names.html">https://dart-lang.github.io/linter/lints/package_names.html</a></li>
+</ul>
+</li>
+<li>package_prefixed_library_names
+<ul>
+<li>このガイドラインは、2つのライブラリの名前が同じ場合に表示される警告を回避するのに役立ちます。推奨するルールは次のとおりです。
+<ul>
+<li>すべてのライブラリ名の前にパッケージ名を付けます。</li>
+<li>エントリライブラリにパッケージと同じ名前を付けます。</li>
+<li>パッケージ内の他のすべてのライブラリの場合、パッケージ名の後に、ドット区切りのパスをライブラリのDartファイルに追加します。</li>
+<li>libの下のライブラリの場合、最上位のディレクトリ名を省略します。</li>
+</ul>
+</li>
+<li><a href="https://dart-lang.github.io/linter/lints/package_prefixed_library_names.html">https://dart-lang.github.io/linter/lints/package_prefixed_library_names.html</a></li>
+</ul>
+</li>
+<li>test_types_in_equals
+<ul>
+<li>型をテストしないと、クラスのコンシューマーにとって予期しないnullポインター例外が発生する場合があります。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/test_types_in_equals.html">https://dart-lang.github.io/linter/lints/test_types_in_equals.html</a></li>
+</ul>
+</li>
+<li>throw_in_finally
+<ul>
+<li>inallyブロックで例外をスローすると、デバッグが困難な予期しない動作が必ず発生します。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/throw_in_finally.html">https://dart-lang.github.io/linter/lints/throw_in_finally.html</a></li>
+</ul>
+</li>
+<li>unnecessary_brace_in_string_interps
+<ul>
+<li>単純な識別子を補間するだけで、直後にさらに多くの英数字テキストが続かない場合は、{}を省略できます。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/unnecessary_brace_in_string_interps.html">https://dart-lang.github.io/linter/lints/unnecessary_brace_in_string_interps.html</a></li>
+</ul>
+</li>
+<li>unnecessary_getters_setters
+<ul>
+<li>JavaとC＃では、実装がフィールドに転送するだけであっても、すべてのフィールドをゲッターとセッター（またはC＃のプロパティ）の後ろに隠すのが一般的です。そうすれば、これらのメンバーでさらに作業を行う必要が生じた場合、コールサイトに触れる必要なく実行できます。これは、ゲッターメソッドの呼び出しはJavaのフィールドへのアクセスとは異なり、プロパティへのアクセスはC＃のrawフィールドへのアクセスとバイナリ互換ではないためです。 Dartにはこの制限はありません。フィールドとゲッター/セッターは完全に区別できません。クラスのフィールドを公開し、後でそのフィールドを使用するコードに触れることなくゲッターとセッターでラップすることができます。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/unnecessary_getters_setters.html">https://dart-lang.github.io/linter/lints/unnecessary_getters_setters.html</a></li>
+</ul>
+</li>
+<li>unnecessary_new
+<ul>
+<li>インスタンスを作成するための新しいキーワード。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/unnecessary_new.html">https://dart-lang.github.io/linter/lints/unnecessary_new.html</a></li>
+</ul>
+</li>
+<li>unnecessary_statements
+<ul>
+<li>明確な効果のないステートメントは通常不要であるか、分割する必要があります。</li>
+<li><a href="https://dart-lang.github.io/linter/lints/unnecessary_statements.html">https://dart-lang.github.io/linter/lints/unnecessary_statements.html</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="heading2">参考</h3>
+<p><a href="https://medium.com/flutter-jp/analysis-b8dbb19d3978">https://medium.com/flutter-jp/analysis-b8dbb19d3978</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>:</span>
+                <span>az </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>:</span>
+                   <span>136</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>:</span>
+                <span>
+
+      
+        <a href="//twitter.com/share?url=https%3a%2f%2fsear-azazel.github.io%2f2020%2f02%2f03%2flearning-03-01%2f&amp;text=Flutter%3a%20%e9%9d%99%e7%9a%84%e8%a7%a3%e6%9e%90%e3%82%92%e8%a1%8c%e3%81%86&amp;via=az_sear" target="_blank" title="Share on Twitter">
+          <i class="iconfont icon-twitter"></i>
+        </a>
+        
+      
+      
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsear-azazel.github.io%2f2020%2f02%2f03%2flearning-03-01%2f" target="_blank" title="Share on Facebook">
+          <i class="iconfont icon-facebook"></i>
+        </a>
+        
+      
+      
+      
+      
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-icon-tag"></i>: 
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/">
+                    #学び</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/dart/">
+                    #Dart</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/flutter/">
+                    #Flutter</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();"></a></span> · 
+                <span><a href="https://sear-azazel.github.io/"></a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://sear-azazel.github.io/2020/01/29/learning-29-03/" class="prev" rel="prev" title="Flutter: FutureBuilderを使って非同期でWidgetを生成する"><i class="iconfont icon-dajiantou"></i>&nbsp;Flutter: FutureBuilderを使って非同期でWidgetを生成する</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+          
+
+ 
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2012 - 2020</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://sear-azazel.github.io/">az</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>
