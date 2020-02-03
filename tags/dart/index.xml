@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Flutter: http.getのエラーハンドリングについて</title>
+      <link>https://sear-azazel.github.io/2020/02/03/learning-03-02/</link>
+      <pubDate>Mon, 03 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/02/03/learning-03-02/</guid>
+      <description>Flutter/Dart http.getのエラーハンドリングについて http.get の際に、exceptionをキャッチしてくれない現象をどう解決するか
+修正前 static Future&amp;lt;String&amp;gt; fetch(String url) async { try { final response = await http.get(url); : } on Exception catch (_) { return Future.value(&amp;#39;Page not found...&amp;#39;); } } 修正後 static Future&amp;lt;String&amp;gt; fetch(String url) async { try { final response = await http.get(url); : } catch (_) { return Future.value(&amp;#39;Page not found...&amp;#39;); } } 補足 ただ、Avoid catches without on clauses. dart(avoid_catches_without_on_clauses) の制約に引っかかってしまう</description>
+    </item>
+    
+    <item>
       <title>Flutter: 静的解析を行う</title>
       <link>https://sear-azazel.github.io/2020/02/03/learning-03-01/</link>
       <pubDate>Mon, 03 Feb 2020 00:00:00 +0900</pubDate>
