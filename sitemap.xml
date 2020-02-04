@@ -72,6 +72,20 @@
     </url>
   
     <url>
+      <loc>https://sear-azazel.github.io/2020/02/04/learning-04-02/</loc>
+      
+      <lastmod>2020-02-04T00:00:00+09:00</lastmod>
+      
+      
+      <changefreq>monthly</changefreq>
+      
+      
+      <priority>0.5</priority>
+      
+      
+    </url>
+  
+    <url>
       <loc>https://sear-azazel.github.io/2020/02/04/learning-04-01/</loc>
       
       <lastmod>2020-02-04T00:00:00+09:00</lastmod>
@@ -282,7 +296,7 @@
     </url>
   
     <url>
-      <loc>https://sear-azazel.github.io/tags/unity/</loc>
+      <loc>https://sear-azazel.github.io/categories/unity/</loc>
       
       <lastmod>2019-12-20T00:00:00+00:00</lastmod>
       
@@ -296,7 +310,7 @@
     </url>
   
     <url>
-      <loc>https://sear-azazel.github.io/categories/unity/</loc>
+      <loc>https://sear-azazel.github.io/tags/unity/</loc>
       
       <lastmod>2019-12-20T00:00:00+00:00</lastmod>
       
