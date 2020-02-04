@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://sear-azazel.github.io/2020/02/03/learning-03-02/" />
+  
+  <link rel="canonical" href="https://sear-azazel.github.io/2020/02/04/learning-04-01/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Flutter: 階層の異なるWidget間の状態変更を通知する | az
+       
+  </title>
+  <meta name="title" content="Flutter: 階層の異なるWidget間の状態変更を通知する | az">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Flutter: 階層の異なるWidget間の状態変更を通知する"/>
+<meta name="twitter:description" content=" 今日学んだこと - 2020/02/04 Flutter: 階層の異なるWidget間の状態変更を通知する "/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Flutter: 階層の異なるWidget間の状態変更を通知する",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/sear-azazel.github.io\/2020\/02\/04\/learning-04-01\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/sear-azazel.github.io\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "posts",
+  "keywords": "学び, Dart, Flutter",
+  "wordcount":  131 ,
+  "url": "https:\/\/sear-azazel.github.io\/2020\/02\/04\/learning-04-01\/",
+  "datePublished": "2020-02-04T00:00:00\x2b09:00",
+  "dateModified": "2020-02-04T00:00:00\x2b09:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "az",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/sear-azazel.github.io\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "map[name:az]"
+  },
+  "description": " 今日学んだこと - 2020\/02\/04 Flutter: 階層の異なるWidget間の状態変更を通知する "
+}
+</script>
+</head>
+
+  
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://sear-azazel.github.io/">az</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://sear-azazel.github.io/">az</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">Flutter: 階層の異なるWidget間の状態変更を通知する</h1>
+        <div class="post-meta">
+              <a href="https://sear-azazel.github.io/" rel="author">map[name:az]</a>  ♥ 
+                <span class="post-time">
+                     <time datetime=2020-02-04 >4 February 2020</time>
+                </span>
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://sear-azazel.github.io/categories/flutter/"> Flutter </a>
+                        
+                </span>
+                <i class="iconfont icon-timer"></i>
+                1 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h1 id="flutterdart">Flutter/Dart</h1>
+<h2 id="widget">階層の異なるWidget間の状態変更を通知する</h2>
+<p>階層が異なるWidget間で、片方のWidgetの状態を変更しても、もう片方は再ビルドされない。
+そこで、Widget間で通知を行う処理を実装する。</p>
+<h3 id="provider">Providerパッケージの追加</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">dependencies:
+  provider: ^<span style="color:#ae81ff">4.0</span><span style="color:#ae81ff">.2</span>
+</code></pre></div><h3 id="heading">実装</h3>
+<h4 id="changenorifier">ChangeNorifier</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HogeChangeNotifier</span> <span style="color:#66d9ef">extends</span> ChangeNotifier {
+  <span style="color:#66d9ef">void</span> hogeChanged() <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> notifyListeners();
+}
+</code></pre></div><h4 id="widgeta">WidgetA</h4>
+<p>後述のWidgetBとWidgetCの共通の親</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetA</span> <span style="color:#66d9ef">extends</span> StatefulWidget {
+  <span style="color:#66d9ef">const</span> WidgetA({Key key}) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(key: key);
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  _WidgetAState createState() <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> _WidgetAState();
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">_WidgetAState</span> <span style="color:#66d9ef">extends</span> State<span style="color:#f92672">&lt;</span>WidgetA<span style="color:#f92672">&gt;</span> {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> ChangeNotifierProvider<span style="color:#f92672">&lt;</span>HogeChangeNotifier<span style="color:#f92672">&gt;</span>(
+      create: (context) <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> HogeChangeNotifier(),
+      child: Container(),
+    );
+  }
+}
+</code></pre></div><h4 id="widgetb">WidgetB</h4>
+<p>通知を送るWidget</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetB</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> RaisedButton.icon(
+      <span style="color:#75715e">// Provider経由でincrement関数を呼ぶ
+</span><span style="color:#75715e"></span>      onPressed: () <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span>
+        Provider.of<span style="color:#f92672">&lt;</span>HogeChangeNotifier<span style="color:#f92672">&gt;</span>(
+          context,
+          listen: <span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// listen:falseにより、こちらはリビルドされない
+</span><span style="color:#75715e"></span>        ).hogeChanged();
+    );
+  }
+}
+</code></pre></div><h4 id="widgetc">WidgetC</h4>
+<p>通知を受けるWidget</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetC</span> <span style="color:#66d9ef">extends</span> StatefulWidget {
+  <span style="color:#66d9ef">const</span> WidgetC({Key key}) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(key: key);
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  _WidgetCState createState() <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> _WidgetCState();
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">_WidgetCState</span> <span style="color:#66d9ef">extends</span> State<span style="color:#f92672">&lt;</span>WidgetC<span style="color:#f92672">&gt;</span> {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Consumer<span style="color:#f92672">&lt;</span>TagSelectionChangeNotifier<span style="color:#f92672">&gt;</span>(
+      builder: (_, __, ___) {
+        <span style="color:#66d9ef">return</span> Container();
+      }
+    );
+  }
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>:</span>
+                <span>az </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>:</span>
+                   <span>131</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>:</span>
+                <span>
+
+      
+        <a href="//twitter.com/share?url=https%3a%2f%2fsear-azazel.github.io%2f2020%2f02%2f04%2flearning-04-01%2f&amp;text=Flutter%3a%20%e9%9a%8e%e5%b1%a4%e3%81%ae%e7%95%b0%e3%81%aa%e3%82%8bWidget%e9%96%93%e3%81%ae%e7%8a%b6%e6%85%8b%e5%a4%89%e6%9b%b4%e3%82%92%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b&amp;via=az_sear" target="_blank" title="Share on Twitter">
+          <i class="iconfont icon-twitter"></i>
+        </a>
+        
+      
+      
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsear-azazel.github.io%2f2020%2f02%2f04%2flearning-04-01%2f" target="_blank" title="Share on Facebook">
+          <i class="iconfont icon-facebook"></i>
+        </a>
+        
+      
+      
+      
+      
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-icon-tag"></i>: 
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/">
+                    #学び</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/dart/">
+                    #Dart</a></span>
+            
+            <span class="tag"><a href="https://sear-azazel.github.io/tags/flutter/">
+                    #Flutter</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();"></a></span> · 
+                <span><a href="https://sear-azazel.github.io/"></a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://sear-azazel.github.io/2020/02/03/learning-03-02/" class="prev" rel="prev" title="Flutter: http.getのエラーハンドリングについて"><i class="iconfont icon-dajiantou"></i>&nbsp;Flutter: http.getのエラーハンドリングについて</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+          
+
+ 
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2012 - 2020</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://sear-azazel.github.io/">az</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>
