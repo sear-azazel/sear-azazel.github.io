@@ -46,6 +46,11 @@ Visual Studio Analyzerを実行するローカルアカウントを作成する�
 1. 上のアイデンティティタブ、設定このユーザーをあなたは、この手順のステップ1で作成したユーザーとパスワードに一致します。
 
 ### 補足
+
+#### 補足１
+インストール後、インストーラが応答しなくなるが再起動を行うと、後工程が進行する
+
+#### 補足２
 下記URLの投稿のGoogle翻訳
 
 https://social.msdn.microsoft.com/Forums/vstudio/en-US/f84a9ef0-bee3-4dcf-8045-3b8c56f22180/setup-was-unable-to-create-a-dcom-user?forum%20=%20vclanguage
