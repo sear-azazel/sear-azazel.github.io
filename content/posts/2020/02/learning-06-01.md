@@ -7,7 +7,7 @@ type:
 - post 
 - posts
 title: "Android: C++のライブラリ(OpenCV)を呼ぶ"
-draft: false
+draft: true
 tags: ["学び", "Kotlin", "Android"]
 categories: ["Android"]
 description: "
