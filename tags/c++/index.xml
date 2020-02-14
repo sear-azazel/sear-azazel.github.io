@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on az</title>
+    <link>https://sear-azazel.github.io/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on az</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Fri, 14 Feb 2020 00:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://sear-azazel.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JNI: AndroidでC&#43;&#43;からJava/Kotlinに値を返す</title>
+      <link>https://sear-azazel.github.io/2020/02/14/learning-14-01/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/2020/02/14/learning-14-01/</guid>
+      <description>JNI/C++ Android でC++を実行する Native(C++)から、Java/Kotlinに値を返す Native側の変数の型はjint, jbooleanなど、通常のint型、boolean型とは異なるため、キャストが困難である。
+そのため、値を返すために、C++から呼び出し元のJava/Kotlinの変数に値をセットする方法で受け渡しを行う。
+#include &amp;lt;jni.h&amp;gt; extern &amp;#34;C&amp;#34; { void Set_double2jdoubleFld(JNIEnv *, jobject, jclass, const char *, double); JNIEXPORT jboolean JNICALL Java_/*package name*/_KotlinClass_exec (JNIEnv *env, jobject thiz, jstring arg) { jclass clazz = env-&amp;gt;GetObjectClass(thiz); const char *str = env-&amp;gt;GetStringUTFChars(arg, 0); // strを用いる処理  env-&amp;gt;ReleaseStringUTFChars(arg, srcPath); // Java/Kotlinに値を渡す  double ans = 0.0; Set_double2jdoubleFld(env, thiz, clazz, &amp;#34;ans&amp;#34;, ans); return 1; } void Set_double2jdoubleFld( JNIEnv *env, jobject mythis, jclass clazz, const char *FieldName, double dblbuf) { jfieldID fid = env-&amp;gt;GetFieldID(clazz, FieldName, &amp;#34;D&amp;#34;); env-&amp;gt;SetDoubleField(mythis, fid, dblbuf); } } class KotlinClass { companion object { init { System.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,37 @@
     <description>Recent content in Tags on az</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2020 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://sear-azazel.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://sear-azazel.github.io/tags/c&#43;&#43;/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JNI</title>
+      <link>https://sear-azazel.github.io/tags/jni/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/tags/jni/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>学び</title>
+      <link>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Visual Studio</title>
@@ -26,15 +53,6 @@
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0900</pubDate>
       
       <guid>https://sear-azazel.github.io/tags/windows/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>学び</title>
-      <link>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</link>
-      <pubDate>Thu, 13 Feb 2020 00:00:00 +0900</pubDate>
-      
-      <guid>https://sear-azazel.github.io/tags/%E5%AD%A6%E3%81%B3/</guid>
       <description></description>
     </item>
     
