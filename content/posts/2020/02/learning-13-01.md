@@ -54,6 +54,10 @@ Visual Studio Analyzerを実行するローカルアカウントを作成する�
 - インストール後、インストーラが応答しなくなるが再起動を行うと、後工程が進行する
 - SP6がインストールできない場合は、VB6を再インストールすると完了する
 
+参考
+
+https://lil.la/technology/technology-memo/post-3651
+
 #### 補足２
 下記URLの投稿のGoogle翻訳
 
